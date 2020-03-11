@@ -1,4 +1,4 @@
-package com.greenboy.translation.web.controller;
+package com.greenboy.translation.integration.web.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.greenboy.translation.integration.service.GoogleShellService;
+import com.greenboy.translation.integration.web.model.AccessTokenDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,9 +16,9 @@ import lombok.RequiredArgsConstructor;
 public class GoogleShellServiceController {
 
 	private final GoogleShellService googleShellService;
-	
+
 	@GetMapping
-	public ResponseEntity<String> getAccessToken(){
-		return ResponseEntity.ok(googleShellService.getAccessToken());
+	public ResponseEntity<AccessTokenDTO> getAccessToken() {
+		return ResponseEntity.ok(AccessTokenDTO.builder().accessToken(googleShellService.getAccessToken()).build());
 	}
 }
