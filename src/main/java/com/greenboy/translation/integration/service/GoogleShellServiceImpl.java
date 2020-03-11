@@ -7,7 +7,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.sun.jdi.InternalException;
@@ -22,10 +21,10 @@ public class GoogleShellServiceImpl implements GoogleShellService {
 
 	@Override
 	public String getAccessToken() {
-		
+
 		reentrantLock.lock();
 		try {
-			String[] args = { "bash", "scripts/getting_access_token.sh"};
+			String[] args = { "bash", "scripts/getting_access_token.sh" };
 			Process shell = Runtime.getRuntime().exec(args);
 			try (BufferedReader input = new BufferedReader(new InputStreamReader(shell.getInputStream()));
 					BufferedReader errorInput = new BufferedReader(new InputStreamReader(shell.getErrorStream()))) {
@@ -51,12 +50,4 @@ public class GoogleShellServiceImpl implements GoogleShellService {
 			reentrantLock.unlock();
 		}
 	}
-
-	@Override
-	@Scheduled(cron = "0 0 * ? * *")
-	public void updateAccessToken() {
-
-	}
-
-
 }
