@@ -20,6 +20,7 @@ public class GoogleTranslationApiConfiguration {
 	@Bean(name = {"translationApi"})
 	public RestTemplate googleTranslationApi(RestTemplateBuilder restTemplateBuilder,
 			CloudTranslationProperties cloudTranslationProperties) {
+		
 		return  restTemplateBuilder.rootUri(cloudTranslationProperties.getUri())
 				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))
 				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead()))

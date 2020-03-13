@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @RequiredArgsConstructor
-@ConfigurationProperties("cloud.translation")
+@ConfigurationProperties(value = "cloud.translation")
 @Component
 public class CloudTranslationProperties {
 	
