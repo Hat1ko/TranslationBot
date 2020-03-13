@@ -1,4 +1,4 @@
-package com.greenboy.translation.service;
+package com.greenboy.translation.integration.cloud.translation.service;
 
 import org.springframework.stereotype.Service;
 
