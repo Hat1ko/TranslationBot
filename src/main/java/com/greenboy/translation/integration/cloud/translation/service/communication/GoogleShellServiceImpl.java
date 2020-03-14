@@ -41,7 +41,7 @@ public class GoogleShellServiceImpl implements GoogleShellService {
 
 				log.info("gcloud access token recieved | accessToken : {}", accessToken);
 
-				return accessToken;
+				return String.format("Bearer %s", accessToken);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage());

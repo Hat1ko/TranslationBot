@@ -34,6 +34,5 @@ public class TranslationCommunicationServiceImpl implements TranslationCommunica
 		log.info("Response for translation | body : {}", objectMapper.writeValueAsString(response));
 		
 		return response;
-
 	}
 }

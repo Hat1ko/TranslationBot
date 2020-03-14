@@ -23,7 +23,7 @@ public class RecognitionCommunicationServiceImpl implements RecognitionCommunica
 
 	@Override
 	public RecognitionResponse recognizeText(RecognitionRequest recognitionRequest) throws JsonProcessingException {
-
+		
 		log.info("POST for recognition | content : {}", recognitionRequest.getContent());
 		
 		RecognitionResponse response = recognitionRest.postForEntity(cloudTranslationProperties.getRecognitionUri(),
