@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import com.greenboy.translation.integration.cloud.translation.service.GoogleShellService;
+import com.greenboy.translation.integration.cloud.translation.service.communication.GoogleShellService;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
