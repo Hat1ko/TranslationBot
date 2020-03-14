@@ -1,6 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.dto;
-
-import java.util.List;
+package com.greenboy.translation.integration.cloud.translation.dto.translation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +11,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TranslationResponse {
-	private List<TranslatedDTO> translations;
+public class TranslatedDTO {
+	
+	private String translatedText;
 }

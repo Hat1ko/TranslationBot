@@ -1,4 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.dto;
+package com.greenboy.translation.integration.cloud.translation.dto.translation;
 
 import java.util.List;
 
