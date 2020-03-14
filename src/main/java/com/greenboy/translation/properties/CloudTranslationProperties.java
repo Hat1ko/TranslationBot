@@ -22,7 +22,8 @@ public class CloudTranslationProperties {
 	private final GoogleShellService googleShellService;
 	private String accessToken;
 	
-	private String uri;
+	private String TranslationUri;
+	private String RecognitionUri;
 	private String contentType;
 	private Timeout timeout;
 	
