@@ -16,14 +16,22 @@ public class GoogleTranslationApiConfiguration {
 	public RestTemplateBuilder restTemplateBuilder() {
 		return new RestTemplateBuilder();
 	}
-	
-	@Bean(name = {"translationApi"})
-	public RestTemplate googleTranslationApi(RestTemplateBuilder restTemplateBuilder,
+
+	@Bean(name = { "translationRest" })
+	public RestTemplate googleTranslationRest(RestTemplateBuilder restTemplateBuilder,
+			CloudTranslationProperties cloudTranslationProperties) {
+
+		return restTemplateBuilder.rootUri(cloudTranslationProperties.getTranslationUri())
+				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))
+				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead())).build();
+	}
+
+	@Bean(name = { "recognitionRest" })
+	public RestTemplate googleRecognitionRest(RestTemplateBuilder restTemplateBuilder,
 			CloudTranslationProperties cloudTranslationProperties) {
 		
-		return  restTemplateBuilder.rootUri(cloudTranslationProperties.getUri())
+		return restTemplateBuilder.rootUri(cloudTranslationProperties.getRecognitionUri())
 				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))
-				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead()))
-				.build();
+				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead())).build();
 	}
 }
