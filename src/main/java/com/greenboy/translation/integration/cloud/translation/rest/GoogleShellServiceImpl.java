@@ -1,4 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.service;
+package com.greenboy.translation.integration.cloud.translation.rest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionRequest;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionResponse;
-import com.greenboy.translation.integration.cloud.translation.service.RecognitionCommunicationService;
+import com.greenboy.translation.integration.cloud.translation.rest.RecognitionCommunicationService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

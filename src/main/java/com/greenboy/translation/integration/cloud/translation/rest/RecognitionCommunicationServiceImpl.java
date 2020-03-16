@@ -1,4 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.service;
+package com.greenboy.translation.integration.cloud.translation.rest;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

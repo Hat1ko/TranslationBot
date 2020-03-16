@@ -1,4 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.service;
+package com.greenboy.translation.integration.cloud.translation.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslationRequest;
