@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenboy.translation.integration.cloud.translation.builder.HttpHeadersBuilder;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionRequest;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionResponse;
-import com.greenboy.translation.properties.CloudTranslationProperties;
+import com.greenboy.translation.integration.cloud.translation.properties.CloudTranslationProperties;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

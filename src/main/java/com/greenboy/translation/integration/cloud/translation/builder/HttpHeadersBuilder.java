@@ -4,7 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
-import com.greenboy.translation.properties.CloudTranslationProperties;
+import com.greenboy.translation.integration.cloud.translation.properties.CloudTranslationProperties;
 
 import lombok.RequiredArgsConstructor;
 

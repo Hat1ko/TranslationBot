@@ -1,4 +1,4 @@
-package com.greenboy.translation.properties;
+package com.greenboy.translation.integration.cloud.translation.properties;
 
 import java.util.Optional;
 

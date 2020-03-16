@@ -1,4 +1,4 @@
-package com.greenboy.translation.properties;
+package com.greenboy.translation.integration.cloud.translation.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -16,8 +16,18 @@ import lombok.Setter;
 @Component
 public class TranslationRequestProperties {
 	
-	private String languageCodeUkrainian;
-	private String languageCodeRussian;
-	private String languageCodeEnglish;
+	private LanguageCode languageCode;
 	private String mimeType;
+	
+	@Getter
+	@Setter
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@ConfigurationProperties(value = "language-code")
+	public class LanguageCode{
+		
+		private String english;
+		private String russian;
+		private String ukrainian;
+	}
 }
