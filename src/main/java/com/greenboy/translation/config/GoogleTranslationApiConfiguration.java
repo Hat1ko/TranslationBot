@@ -12,7 +12,7 @@ import com.greenboy.translation.properties.CloudTranslationProperties;
 @Configuration
 public class GoogleTranslationApiConfiguration {
 
-	@Bean
+	@Bean(name = {"restTemplateBuilder"})
 	public RestTemplateBuilder restTemplateBuilder() {
 		return new RestTemplateBuilder();
 	}
@@ -23,7 +23,8 @@ public class GoogleTranslationApiConfiguration {
 
 		return restTemplateBuilder.rootUri(cloudTranslationProperties.getTranslationUri())
 				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))
-				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead())).build();
+				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead()))
+				.build();
 	}
 
 	@Bean(name = { "recognitionRest" })
@@ -32,6 +33,7 @@ public class GoogleTranslationApiConfiguration {
 		
 		return restTemplateBuilder.rootUri(cloudTranslationProperties.getRecognitionUri())
 				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))
-				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead())).build();
+				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead()))
+				.build();
 	}
 }

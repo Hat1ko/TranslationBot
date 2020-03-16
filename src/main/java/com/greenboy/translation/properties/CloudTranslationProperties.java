@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 
 import com.greenboy.translation.integration.cloud.translation.service.communication.GoogleShellService;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @RequiredArgsConstructor
 @ConfigurationProperties(value = "cloud.translation")
 @Component
@@ -22,8 +22,8 @@ public class CloudTranslationProperties {
 	private final GoogleShellService googleShellService;
 	private String accessToken;
 	
-	private String TranslationUri;
-	private String RecognitionUri;
+	private String translationUri;
+	private String recognitionUri;
 	private String contentType;
 	private Timeout timeout;
 	
@@ -39,8 +39,9 @@ public class CloudTranslationProperties {
 	
 	@Getter
 	@Setter
-	@AllArgsConstructor
-	public class Timeout{
+	@NoArgsConstructor
+	@ConfigurationProperties(value = "timeout")
+	public static class Timeout{
 		private Long read;
 		private Long connect;
 	}
