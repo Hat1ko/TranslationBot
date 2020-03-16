@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.greenboy.translation.integration.cloud.translation.service.communication.GoogleShellService;
+import com.greenboy.translation.integration.cloud.translation.service.GoogleShellService;
 import com.greenboy.translation.integration.cloud.translation.web.dto.AccessTokenDTO;
 
 import lombok.RequiredArgsConstructor;
