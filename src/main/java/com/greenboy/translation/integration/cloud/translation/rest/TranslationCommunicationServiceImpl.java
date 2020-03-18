@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.greenboy.translation.integration.cloud.translation.builder.HttpHeadersBuilder;
+import com.greenboy.translation.builder.HttpHeadersBuilder;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslationRequest;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslationResponse;
 import com.greenboy.translation.integration.properties.CloudCommunicationProperties;

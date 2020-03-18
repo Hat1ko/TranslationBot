@@ -1,4 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.builder;
+package com.greenboy.translation.builder;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
