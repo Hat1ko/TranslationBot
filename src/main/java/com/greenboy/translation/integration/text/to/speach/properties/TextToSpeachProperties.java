@@ -23,6 +23,7 @@ public class TextToSpeachProperties {
 	private LanguageCode languageCode;
 	private SsmlGender ssmlGender;
 	private SyntesizerName syntesizerName;
+	private Timeout timeout;
 
 	@Getter
 	@Setter
@@ -50,9 +51,19 @@ public class TextToSpeachProperties {
 	@NoArgsConstructor
 	@AllArgsConstructor
 	public static class SyntesizerName {
-		
+
 		private String english;
 		private String russian;
 		private String ukrainian;
+	}
+
+	@Getter
+	@Setter
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class Timeout {
+		
+		private Long read;
+		private Long connect;
 	}
 }
