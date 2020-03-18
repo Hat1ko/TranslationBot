@@ -36,12 +36,6 @@ public class TranslationCommunicationServiceImpl implements TranslationCommunica
 		TranslationResponse response = translationRest.exchange(cloudTranslationProperties.getTranslationUri(),
 				HttpMethod.POST, requestEntity, TranslationResponse.class).getBody();
 
-//		TranslationResponse repsponse
-
-//		TranslationResponse response = translationRest
-//				.postForEntity(cloudTranslationProperties.getTranslationUri(), request, TranslationResponse.class)
-//				.getBody();
-
 		log.info("Response for translation | body : {}", objectMapper.writeValueAsString(response));
 
 		return response;

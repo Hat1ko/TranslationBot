@@ -35,9 +35,6 @@ public class RecognitionCommunicationServiceImpl implements RecognitionCommunica
 		RecognitionResponse response = recognitionRest.exchange(cloudTranslationProperties.getRecognitionUri(),
 				HttpMethod.POST, requestEntity, RecognitionResponse.class).getBody();
 
-//		RecognitionResponse response = recognitionRest.postForEntity(cloudTranslationProperties.getRecognitionUri(),
-//				request, RecognitionResponse.class).getBody();
-
 		log.info("Response for recognition | body : {}", objectMapper.writeValueAsString(response));
 
 		return response;

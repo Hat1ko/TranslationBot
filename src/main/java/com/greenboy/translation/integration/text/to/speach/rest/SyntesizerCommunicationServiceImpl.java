@@ -25,15 +25,17 @@ public class SyntesizerCommunicationServiceImpl implements SyntesizerCommunicati
 	@Override
 	public SyntesizeResponse getSyntesierString(SyntesizeRequest request) {
 
-		log.info("POST for syntesation | languageCode : {}, text : {}", request.getVoice().getLanguageCode(), request.getInput().getText());
-		
+		log.info("POST for syntesation | languageCode : {}, text : {}", request.getVoice().getLanguageCode(),
+				request.getInput().getText());
+
 		HttpEntity<SyntesizeRequest> requestEntity = new HttpEntity<>(request, httpHeadersBuilder.getHttpHeaders());
 
-		SyntesizeResponse response = syntesizerRest.exchange(textToSpeachProperties.getUri(), HttpMethod.POST,
-				requestEntity, SyntesizeResponse.class).getBody();
+		SyntesizeResponse response = syntesizerRest
+				.exchange(textToSpeachProperties.getUri(), HttpMethod.POST, requestEntity, SyntesizeResponse.class)
+				.getBody();
 
 		log.info("Response from syntesation | audioContent : {}", response.getAudioContent());
-		
+
 		return response;
 	}
 
