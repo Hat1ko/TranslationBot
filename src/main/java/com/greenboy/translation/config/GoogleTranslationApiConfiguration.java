@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-import com.greenboy.translation.integration.cloud.translation.properties.CloudTranslationProperties;
+import com.greenboy.translation.integration.properties.CloudCommunicationProperties;
 
 @Configuration
 public class GoogleTranslationApiConfiguration {
@@ -19,7 +19,7 @@ public class GoogleTranslationApiConfiguration {
 
 	@Bean(name = { "translationRest" })
 	public RestTemplate googleTranslationRest(RestTemplateBuilder restTemplateBuilder,
-			CloudTranslationProperties cloudTranslationProperties) {
+			CloudCommunicationProperties cloudTranslationProperties) {
 
 		return restTemplateBuilder.rootUri(cloudTranslationProperties.getTranslationUri())
 				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))
@@ -29,7 +29,7 @@ public class GoogleTranslationApiConfiguration {
 
 	@Bean(name = { "recognitionRest" })
 	public RestTemplate googleRecognitionRest(RestTemplateBuilder restTemplateBuilder,
-			CloudTranslationProperties cloudTranslationProperties) {
+			CloudCommunicationProperties cloudTranslationProperties) {
 		
 		return restTemplateBuilder.rootUri(cloudTranslationProperties.getRecognitionUri())
 				.setConnectTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getConnect()))

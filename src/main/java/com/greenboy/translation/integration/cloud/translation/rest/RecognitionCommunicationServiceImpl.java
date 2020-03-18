@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenboy.translation.integration.cloud.translation.builder.HttpHeadersBuilder;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionRequest;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionResponse;
-import com.greenboy.translation.integration.cloud.translation.properties.CloudTranslationProperties;
+import com.greenboy.translation.integration.properties.CloudCommunicationProperties;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RecognitionCommunicationServiceImpl implements RecognitionCommunicationService {
 
 	private final RestTemplate recognitionRest;
-	private final CloudTranslationProperties cloudTranslationProperties;
+	private final CloudCommunicationProperties cloudTranslationProperties;
 	private final HttpHeadersBuilder httpHeadersBuilder;
 	private final ObjectMapper objectMapper;
 

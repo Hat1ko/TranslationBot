@@ -1,11 +1,11 @@
-package com.greenboy.translation.integration.cloud.translation.properties;
+package com.greenboy.translation.integration.properties;
 
 import java.util.Optional;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import com.greenboy.translation.integration.cloud.translation.rest.GoogleShellService;
+import com.greenboy.translation.integration.gcloud.shell.rest.GoogleShellService;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @ConfigurationProperties(value = "cloud.translation")
 @Component
-public class CloudTranslationProperties {
+public class CloudCommunicationProperties {
 	
 	private final GoogleShellService googleShellService;
 	private String accessToken;

@@ -4,7 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
-import com.greenboy.translation.integration.cloud.translation.properties.CloudTranslationProperties;
+import com.greenboy.translation.integration.properties.CloudCommunicationProperties;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class HttpHeadersBuilder {
 	
-	private final CloudTranslationProperties cloudTranslationProperties;
+	private final CloudCommunicationProperties cloudTranslationProperties;
 	
 	public HttpHeaders getHttpHeaders() {
 		

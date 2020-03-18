@@ -1,4 +1,4 @@
-package com.greenboy.translation.integration.cloud.translation.web.dto;
+package com.greenboy.translation.integration.gcloud.shell.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
