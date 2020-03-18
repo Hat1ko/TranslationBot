@@ -1,12 +1,12 @@
 package com.greenboy.translation.integration.cloud.translation.rest;
 
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenboy.translation.builder.HttpHeadersBuilder;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionRequest;
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionResponse;
@@ -23,10 +23,9 @@ public class RecognitionCommunicationServiceImpl implements RecognitionCommunica
 	private final RestTemplate recognitionRest;
 	private final CloudCommunicationProperties cloudTranslationProperties;
 	private final HttpHeadersBuilder httpHeadersBuilder;
-	private final ObjectMapper objectMapper;
 
 	@Override
-	public RecognitionResponse recognizeText(RecognitionRequest request) throws JsonProcessingException {
+	public RecognitionResponse recognizeText(RecognitionRequest request) {
 
 		log.info("POST for recognition | content : {}", request.getContent());
 
@@ -35,7 +34,9 @@ public class RecognitionCommunicationServiceImpl implements RecognitionCommunica
 		RecognitionResponse response = recognitionRest.exchange(cloudTranslationProperties.getRecognitionUri(),
 				HttpMethod.POST, requestEntity, RecognitionResponse.class).getBody();
 
-		log.info("Response for recognition | body : {}", objectMapper.writeValueAsString(response));
+		log.info("Response for recognition | languages : {}", response.getLanguages().stream()
+				.map(e -> String.format("languageCode : %s, confidence : %s", e.getLanguageCode(), e.getConfidence()))
+				.collect(Collectors.joining(" ")));
 
 		return response;
 	}
