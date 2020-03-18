@@ -4,5 +4,5 @@ import com.greenboy.translation.integration.text.to.speach.dto.SyntesizeRequest;
 import com.greenboy.translation.integration.text.to.speach.dto.SyntesizeResponse;
 
 public interface SyntesizerCommunicationService {
-	SyntesizeResponse getSyntesierString(SyntesizeRequest request);
+	SyntesizeResponse getSyntesizedString(SyntesizeRequest request);
 }

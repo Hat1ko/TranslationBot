@@ -23,7 +23,7 @@ public class SyntesizerCommunicationServiceImpl implements SyntesizerCommunicati
 	private final TextToSpeachProperties textToSpeachProperties;
 
 	@Override
-	public SyntesizeResponse getSyntesierString(SyntesizeRequest request) {
+	public SyntesizeResponse getSyntesizedString(SyntesizeRequest request) {
 
 		log.info("POST for syntesation | languageCode : {}, text : {}", request.getVoice().getLanguageCode(),
 				request.getInput().getText());
