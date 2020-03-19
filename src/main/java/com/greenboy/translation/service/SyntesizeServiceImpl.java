@@ -18,9 +18,8 @@ import com.greenboy.translation.integration.text.to.speach.properties.TextToSpea
 import com.greenboy.translation.integration.text.to.speach.rest.SyntesizerCommunicationService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+//@Slf4j
 @RequiredArgsConstructor
 @Service
 public final class SyntesizeServiceImpl implements SyntesizeService {
