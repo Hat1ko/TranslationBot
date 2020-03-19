@@ -13,6 +13,7 @@ import com.greenboy.translation.integration.cloud.translation.dto.recognition.Re
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionResponse;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslationRequest;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslationResponse;
+import com.greenboy.translation.integration.cloud.translation.properties.TranslationRequestProperties;
 import com.greenboy.translation.integration.cloud.translation.rest.RecognitionCommunicationService;
 import com.greenboy.translation.integration.cloud.translation.rest.TranslationCommunicationService;
 
@@ -26,12 +27,14 @@ public final class TranslationServiceImpl implements TranslationService {
 
 	private final TranslationCommunicationService translationCommunicationService;
 	private final RecognitionCommunicationService recognitionCommunicationService;
-	private final TextsToTranslationRequestConverter textsToTranslationRequestConverter;
-
+	private final TranslationRequestProperties translationRequestProperties;
+	
 	@Override
 	public List<String> translateText(List<String> texts, String fromLanguage, String toLanguage) {
 
-		TranslationRequest request = textsToTranslationRequestConverter.convert(texts, fromLanguage, toLanguage);
+		String mimeType = translationRequestProperties.getMimeType();
+		
+		TranslationRequest request = TextsToTranslationRequestConverter.convert(texts, fromLanguage, toLanguage, mimeType);
 
 		log.info("Request to translate from : {}, to : {}", fromLanguage, toLanguage);
 

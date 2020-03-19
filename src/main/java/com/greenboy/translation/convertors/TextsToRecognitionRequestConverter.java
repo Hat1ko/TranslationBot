@@ -1,10 +1,11 @@
 package com.greenboy.translation.convertors;
 
-import org.springframework.stereotype.Component;
-
 import com.greenboy.translation.integration.cloud.translation.dto.recognition.RecognitionRequest;
 
-@Component
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class TextsToRecognitionRequestConverter {
 
 	public static RecognitionRequest convert(String text) {
