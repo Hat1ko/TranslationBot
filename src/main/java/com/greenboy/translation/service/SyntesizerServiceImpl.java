@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SyntesizerServiceImpl implements SyntesizerService {
+public final class SyntesizerServiceImpl implements SyntesizerService {
 
 	@Override
 	public File syntesizeText(List<String> texts) {

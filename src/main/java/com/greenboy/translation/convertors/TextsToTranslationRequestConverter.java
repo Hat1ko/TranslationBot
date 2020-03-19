@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Component
-public class TextsToTranslationRequestConverter {
+public final class TextsToTranslationRequestConverter {
 
 	private final TranslationRequestProperties translationRequestProperties;
 

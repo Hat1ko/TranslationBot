@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslatedDTO;
 import com.greenboy.translation.integration.cloud.translation.dto.translation.TranslationResponse;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
 public final class TranslationResponseToTextsConverter {
 

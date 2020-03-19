@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class RecognitionCommunicationServiceImpl implements RecognitionCommunicationService {
+public final class RecognitionCommunicationServiceImpl implements RecognitionCommunicationService {
 
 	private final RestTemplate recognitionRest;
 	private final CloudCommunicationProperties cloudTranslationProperties;

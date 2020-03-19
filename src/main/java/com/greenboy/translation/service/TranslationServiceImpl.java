@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class TranslationServiceImpl implements TranslationService{
+public final class TranslationServiceImpl implements TranslationService{
 
 	private final TranslationCommunicationService translationCommunicationService;
 	private final TextsToTranslationRequestConverter textsToTranslationRequestConverter;

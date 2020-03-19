@@ -17,7 +17,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @ConfigurationProperties(value = "cloud.translation")
 @Component
-public class CloudCommunicationProperties {
+public final class CloudCommunicationProperties {
 	
 	private final GoogleShellService googleShellService;
 	private String accessToken;

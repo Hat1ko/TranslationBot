@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class TranslationCommunicationServiceImpl implements TranslationCommunicationService {
+public final class TranslationCommunicationServiceImpl implements TranslationCommunicationService {
 
 	private final RestTemplate translationRest;
 	private final CloudCommunicationProperties cloudTranslationProperties;
