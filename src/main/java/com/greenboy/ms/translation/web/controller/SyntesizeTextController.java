@@ -1,0 +1,42 @@
+package com.greenboy.ms.translation.web.controller;
+
+import java.nio.file.Path;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.greenboy.ms.translation.service.SyntesizeService;
+import com.greenboy.ms.translation.web.dto.request.SyntesizeTextRequest;
+import com.greenboy.ms.translation.web.dto.response.SyntesizeTextResponse;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RequiredArgsConstructor
+@RequestMapping(path = "api/v1/syntesize")
+@RestController
+public class SyntesizeTextController {
+
+	private final SyntesizeService syntesizeService;
+	
+	@PostMapping
+	public ResponseEntity<SyntesizeTextResponse> syntesizeText(@RequestBody SyntesizeTextRequest request) {
+		
+		List<String> textsToSyntesize = request.getContents();
+		
+		log.info("API call to syntesize texts | num of texts : {}", textsToSyntesize.size());
+		
+		List<Path> paths = syntesizeService.syntesizeText(textsToSyntesize);
+		
+		log.info("API response to syntesize texts | num of syntesized : {}", paths.size());
+		
+		SyntesizeTextResponse response = SyntesizeTextResponse.builder().paths(paths).build();
+		
+		return ResponseEntity.ok(response);
+	}
+}
