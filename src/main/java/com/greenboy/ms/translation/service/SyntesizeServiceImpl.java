@@ -30,12 +30,8 @@ public final class SyntesizeServiceImpl implements SyntesizeService {
 	private final Syntesizer syntesizer;
 	private final SyntesizeConfigPreparator syntesizeConfigPreparator;
 
-//TODO: rewrite methods
 	@Override
 	public Path syntesizeText(String text, String language, String gender) {
-
-//		List<InputDTO> inputs = texts.stream().map(text -> InputDTO.builder().text(text).build())
-//				.collect(Collectors.toList());
 
 		InputDTO input = InputDTO.builder().text(text).build();
 
@@ -44,30 +40,13 @@ public final class SyntesizeServiceImpl implements SyntesizeService {
 
 		SyntesizeEntity config = syntesizeConfigPreparator.prepareConfig(language, gender);
 
-		// TODO: rework putting settings
 		VoiceDTO voice = VoiceDTO.builder().languageCode(config.getLanguageCode()).ssmlGender(config.getSsmlGender())
 				.name(config.getSyntesizerName()).build();
 
-//		List<SyntesizeRequest> requests = inputs.stream()
-//				.map(e -> SyntesizeRequest.builder().input(e).audioConfig(audioConfigDTO).voice(voiceDTO).build())
-//				.collect(Collectors.toList());
-
 		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice).build();
 		
-//		List<SyntesizeResponse> responses = requests.stream()
-//				.map(e -> syntesizerCommunicationService.getSyntesizedString(e)).collect(Collectors.toList());
-
 		SyntesizeResponse response = syntesizerCommunicationService.getSyntesizedString(request);
 		
-//		Map<String, String> files = new HashMap<String, String>();
-//
-//		for (int i = 0; i < inputs.size(); i++) {
-//			files.put(texts.get(i), responses.get(i).getAudioContent());
-//		}
-
-//		List<Path> pathsToFiles = files.entrySet().stream().map(e -> syntesizer.syntesize(e.getKey(), e.getValue()))
-//				.collect(Collectors.toList());
-
 		Path pathToFile = syntesizer.syntesize(text, response.getAudioContent());
 		
 		return pathToFile;
@@ -76,10 +55,6 @@ public final class SyntesizeServiceImpl implements SyntesizeService {
 	@Override
 	public Path syntesizeTextTemp(String text, String language, String gender) {
 
-
-//		List<InputDTO> inputs = texts.stream().map(text -> InputDTO.builder().text(text).build())
-//				.collect(Collectors.toList());
-
 		InputDTO input = InputDTO.builder().text(text).build();
 
 		AudioConfigDTO audioConfig = AudioConfigDTO.builder()
@@ -87,29 +62,12 @@ public final class SyntesizeServiceImpl implements SyntesizeService {
 
 		SyntesizeEntity config = syntesizeConfigPreparator.prepareConfig(language, gender);
 
-		// TODO: rework putting settings
 		VoiceDTO voice = VoiceDTO.builder().languageCode(config.getLanguageCode()).ssmlGender(config.getSsmlGender())
 				.name(config.getSyntesizerName()).build();
 
-//		List<SyntesizeRequest> requests = inputs.stream()
-//				.map(e -> SyntesizeRequest.builder().input(e).audioConfig(audioConfigDTO).voice(voiceDTO).build())
-//				.collect(Collectors.toList());
-
 		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice).build();
 		
-//		List<SyntesizeResponse> responses = requests.stream()
-//				.map(e -> syntesizerCommunicationService.getSyntesizedString(e)).collect(Collectors.toList());
-
 		SyntesizeResponse response = syntesizerCommunicationService.getSyntesizedString(request);
-		
-//		Map<String, String> files = new HashMap<String, String>();
-//
-//		for (int i = 0; i < inputs.size(); i++) {
-//			files.put(texts.get(i), responses.get(i).getAudioContent());
-//		}
-
-//		List<Path> pathsToFiles = files.entrySet().stream().map(e -> syntesizer.syntesize(e.getKey(), e.getValue()))
-//				.collect(Collectors.toList());
 
 		Path pathToFile = syntesizer.syntesizeTemp(text, response.getAudioContent());
 		

@@ -1,7 +1,6 @@
 package com.greenboy.ms.translation.web.dto.response;
 
 import java.nio.file.Path;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
