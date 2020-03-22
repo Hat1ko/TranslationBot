@@ -22,25 +22,25 @@ public class SyntesizeConfigPreparatorImpl implements SyntesizeConfigPreparator 
 		switch (language) {
 		case "en":
 			languageCode = textToSpeachProperties.getLanguageCode().getEnglish();
-			syntesizerName = textToSpeachProperties.getSyntesizerName().getEnglish().getMale().equals(gender)
+			syntesizerName = textToSpeachProperties.getSsmlGender().getMale().equals(gender)
 					? textToSpeachProperties.getSyntesizerName().getEnglish().getMale()
 					: textToSpeachProperties.getSyntesizerName().getEnglish().getFemale();
 			break;
 		case "ru":
 			languageCode = textToSpeachProperties.getLanguageCode().getRussian();
-			syntesizerName = textToSpeachProperties.getSyntesizerName().getRussian().getMale().equals(gender)
+			syntesizerName = textToSpeachProperties.getSsmlGender().getMale().equals(gender)
 					? textToSpeachProperties.getSyntesizerName().getRussian().getMale()
 					: textToSpeachProperties.getSyntesizerName().getRussian().getFemale();
 			break;
 		case "uk":
 			languageCode = textToSpeachProperties.getLanguageCode().getUkrainian();
-			syntesizerName = textToSpeachProperties.getSyntesizerName().getEnglish().getFemale();// no male
+			syntesizerName = textToSpeachProperties.getSyntesizerName().getUkrainian().getFemale();// no male
 			break;
 		}
 
-		String ssmlGender = textToSpeachProperties.getSsmlGender().getFemale().equals(gender)
-				? textToSpeachProperties.getSsmlGender().getFemale()
-				: textToSpeachProperties.getSsmlGender().getMale();
+		String ssmlGender = textToSpeachProperties.getSsmlGender().getMale().equals(gender)
+				? textToSpeachProperties.getSsmlGender().getMale()
+				: textToSpeachProperties.getSsmlGender().getFemale();
 
 		return SyntesizeEntity.builder().languageCode(languageCode).ssmlGender(ssmlGender)
 				.syntesizerName(syntesizerName).build();
