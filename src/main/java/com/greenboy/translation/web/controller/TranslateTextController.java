@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping(path = "api/v1/translation")
+@RequestMapping(path = "api/v1/translate")
 @RestController
 public class TranslateTextController {
 

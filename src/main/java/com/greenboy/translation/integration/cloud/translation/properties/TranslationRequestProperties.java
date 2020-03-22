@@ -24,7 +24,7 @@ public class TranslationRequestProperties {
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@ConfigurationProperties(value = "language-code")
-	public class LanguageCode{
+	public static class LanguageCode{
 		
 		private String english;
 		private String russian;
