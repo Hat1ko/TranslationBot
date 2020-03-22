@@ -19,9 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RequestMapping(path = "api/v1/recognize")
 @RestController
-public class RecognizeTextController {
+public class RecognizeLanguageController {
 
-	TranslationService translationService;
+	private final TranslationService translationService;
 
 	@PostMapping
 	public ResponseEntity<RecognizeLanguageResponse> recognizeLanguage(@RequestBody RecognizeLanguageRequest request) {
