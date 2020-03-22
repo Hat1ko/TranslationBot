@@ -22,14 +22,14 @@ public class SyntesizerImpl implements Syntesizer {
 		Path pathToSound = Path.of(String.format("audio"))
 				.resolve(String.format("%s.mp3", text.substring(0, Math.min(text.length(), 10))));
 
-		if(Files.exists(pathToSound)) {
+		if (Files.exists(pathToSound)) {
 			try {
 				Files.delete(pathToSound);
 			} catch (IOException e) {
 				log.error("Error : {}", e.getMessage());
 			}
 		}
-		
+
 		Path audioFile = null;
 
 		try {
@@ -42,4 +42,41 @@ public class SyntesizerImpl implements Syntesizer {
 		return audioFile;
 	}
 
+	@Override
+	public Path syntesizeTemp(String text, String audioContent) {
+
+		byte[] decodedAudioContent = Base64.getDecoder().decode(audioContent);
+
+		Path pathToSound = null;
+		
+		try {
+			pathToSound = Files.createTempDirectory("audio")
+					.resolve(String.format("%s.mp3", text.substring(0, Math.min(text.length(), 10))));
+		} catch (IOException e) {
+			log.error("Error : {}", e.getMessage());
+		}
+
+		if(pathToSound == null) {
+			return null;
+		}
+		
+		if (Files.exists(pathToSound)) {
+			try {
+				Files.delete(pathToSound);
+			} catch (IOException e) {
+				log.error("Error : {}", e.getMessage());
+			}
+		}
+
+		Path audioFile = null;
+
+		try {
+			audioFile = Files.createFile(pathToSound);
+			Files.write(audioFile, decodedAudioContent, StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			log.error("Error : {}", e.getMessage());
+		}
+
+		return audioFile;
+	}
 }
