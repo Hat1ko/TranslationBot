@@ -6,7 +6,7 @@ import java.nio.file.Path;
 
 import org.springframework.stereotype.Service;
 
-import com.greenboy.ms.translation.dto.SyntesizeEntity;
+import com.greenboy.ms.translation.dto.SyntesizeConfig;
 import com.greenboy.ms.translation.integration.text.to.speach.dto.AudioConfigDTO;
 import com.greenboy.ms.translation.integration.text.to.speach.dto.InputDTO;
 import com.greenboy.ms.translation.integration.text.to.speach.dto.SyntesizeRequest;
@@ -33,45 +33,56 @@ public final class SyntesizeServiceImpl implements SyntesizeService {
 	@Override
 	public Path syntesizeText(String text, String language, String gender) {
 
+		log.info("Syntesize text | text : {}, language : {}, gender : {}", text, language, gender);
+
 		InputDTO input = InputDTO.builder().text(text).build();
 
-		AudioConfigDTO audioConfig = AudioConfigDTO.builder()
-				.audioEncoding(textToSpeachProperties.getAudioEncoding()).build();
+		AudioConfigDTO audioConfig = AudioConfigDTO.builder().audioEncoding(textToSpeachProperties.getAudioEncoding())
+				.build();
 
-		SyntesizeEntity config = syntesizeConfigPreparator.prepareConfig(language, gender);
+		SyntesizeConfig config = syntesizeConfigPreparator.prepareConfig(language, gender);
 
 		VoiceDTO voice = VoiceDTO.builder().languageCode(config.getLanguageCode()).ssmlGender(config.getSsmlGender())
 				.name(config.getSyntesizerName()).build();
 
-		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice).build();
-		
+		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice)
+				.build();
+
 		SyntesizeResponse response = syntesizerCommunicationService.getSyntesizedString(request);
-		
+
+		log.info("Response | audioContent: {}", response.getAudioContent());
+
 		Path pathToFile = syntesizer.syntesize(text, response.getAudioContent());
-		
+
 		return pathToFile;
 	}
 
 	@Override
 	public Path syntesizeTextTemp(String text, String language, String gender) {
 
+		log.info("Syntesize text temporary | text : {}, language : {}, gender : {}", text, language, gender);
+
 		InputDTO input = InputDTO.builder().text(text).build();
 
-		AudioConfigDTO audioConfig = AudioConfigDTO.builder()
-				.audioEncoding(textToSpeachProperties.getAudioEncoding()).build();
+		AudioConfigDTO audioConfig = AudioConfigDTO.builder().audioEncoding(textToSpeachProperties.getAudioEncoding())
+				.build();
 
-		SyntesizeEntity config = syntesizeConfigPreparator.prepareConfig(language, gender);
+		SyntesizeConfig config = syntesizeConfigPreparator.prepareConfig(language, gender);
 
 		VoiceDTO voice = VoiceDTO.builder().languageCode(config.getLanguageCode()).ssmlGender(config.getSsmlGender())
 				.name(config.getSyntesizerName()).build();
 
-		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice).build();
-		
+		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice)
+				.build();
+
 		SyntesizeResponse response = syntesizerCommunicationService.getSyntesizedString(request);
 
+		log.info("Response | audioContent: {}", response.getAudioContent());
+
 		Path pathToFile = syntesizer.syntesizeTemp(text, response.getAudioContent());
-		
-		return pathToFile;	}
+
+		return pathToFile;
+	}
 
 	@Override
 	public Boolean deleteTextIfExist(Path PathToFile) {

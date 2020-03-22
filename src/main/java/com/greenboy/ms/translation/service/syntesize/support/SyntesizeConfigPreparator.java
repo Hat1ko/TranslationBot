@@ -1,9 +1,9 @@
 package com.greenboy.ms.translation.service.syntesize.support;
 
-import com.greenboy.ms.translation.dto.SyntesizeEntity;
+import com.greenboy.ms.translation.dto.SyntesizeConfig;
 
 public interface SyntesizeConfigPreparator {
 
-	SyntesizeEntity prepareConfig(String language, String gender);
+	SyntesizeConfig prepareConfig(String language, String gender);
 
 }

@@ -2,7 +2,7 @@ package com.greenboy.ms.translation.service.syntesize.support;
 
 import org.springframework.stereotype.Component;
 
-import com.greenboy.ms.translation.dto.SyntesizeEntity;
+import com.greenboy.ms.translation.dto.SyntesizeConfig;
 import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeachProperties;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ public class SyntesizeConfigPreparatorImpl implements SyntesizeConfigPreparator 
 	private final TextToSpeachProperties textToSpeachProperties;
 
 	@Override
-	public SyntesizeEntity prepareConfig(String language, String gender) {
+	public SyntesizeConfig prepareConfig(String language, String gender) {
 
 		String languageCode = "en";
 		String syntesizerName = textToSpeachProperties.getSyntesizerName().getEnglish().getFemale();
@@ -42,7 +42,7 @@ public class SyntesizeConfigPreparatorImpl implements SyntesizeConfigPreparator 
 				? textToSpeachProperties.getSsmlGender().getMale()
 				: textToSpeachProperties.getSsmlGender().getFemale();
 
-		return SyntesizeEntity.builder().languageCode(languageCode).ssmlGender(ssmlGender)
+		return SyntesizeConfig.builder().languageCode(languageCode).ssmlGender(ssmlGender)
 				.syntesizerName(syntesizerName).build();
 	}
 }

@@ -11,9 +11,9 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SyntesizeParams {
+public class SyntesizeConfig {
 
 	private String languageCode;
-	private String gender;
-	private String content;
+	private String ssmlGender;
+	private String syntesizerName;
 }
