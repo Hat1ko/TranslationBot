@@ -16,5 +16,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SyntesizeTextResponse {
 	
-	private List<Path> paths;
+	private Path paths;
 }

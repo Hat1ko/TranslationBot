@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.web.dto.request;
+package com.greenboy.ms.translation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class SyntesizeTextRequest {
-	
-	private String language;
+@NoArgsConstructor
+public class SyntesizeParams {
+
+	private String languageCode;
 	private String gender;
 	private String content;
 }

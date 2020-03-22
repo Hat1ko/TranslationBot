@@ -52,9 +52,37 @@ public class TextToSpeachProperties {
 	@AllArgsConstructor
 	public static class SyntesizerName {
 
-		private String english;
-		private String russian;
-		private String ukrainian;
+		private English english;
+		private Russian russian;
+		private Ukrainian ukrainian;
+
+		@Getter
+		@Setter
+		@NoArgsConstructor
+		@AllArgsConstructor
+		public static class English {
+			String male;
+			String female;
+		}
+		
+		@Getter
+		@Setter
+		@NoArgsConstructor
+		@AllArgsConstructor
+		public static class Russian {
+			String male;
+			String female;
+		}
+		
+		@Getter
+		@Setter
+		@NoArgsConstructor
+		@AllArgsConstructor
+		public static class Ukrainian {
+			String male;
+			String female;
+		}
+
 	}
 
 	@Getter
@@ -62,7 +90,7 @@ public class TextToSpeachProperties {
 	@NoArgsConstructor
 	@AllArgsConstructor
 	public static class Timeout {
-		
+
 		private Long read;
 		private Long connect;
 	}

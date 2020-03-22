@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.service;
+package com.greenboy.ms.translation.service.syntesize.support;
 
 import java.nio.file.Path;
 

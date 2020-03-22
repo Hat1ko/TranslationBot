@@ -1,11 +1,10 @@
 package com.greenboy.ms.translation.service;
 
 import java.nio.file.Path;
-import java.util.List;
 
 public interface SyntesizeService {
 	
-	List<Path> syntesizeText(List<String> texts);
-	List<Path> syntesizeTextTemp(List<String> texts);
+	Path syntesizeText(String text, String language, String gender);
+	Path syntesizeTextTemp(String text, String language, String gender);
 	Boolean deleteTextIfExist(Path PathToFile);
 }

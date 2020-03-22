@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.service;
+package com.greenboy.ms.translation.service.syntesize.support;
 
 import java.io.IOException;
 import java.nio.file.Files;
