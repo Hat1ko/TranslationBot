@@ -13,6 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RecognizedLanguageDTO {
 	
-	String languageCode;
-	Double confidence;
+	private String languageCode;
+	private Double confidence;
 }

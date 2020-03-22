@@ -7,6 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sun.jdi.InternalException;
@@ -18,13 +19,16 @@ import lombok.extern.slf4j.Slf4j;
 public class GoogleShellServiceImpl implements GoogleShellService {
 
 	private final ReentrantLock reentrantLock = new ReentrantLock();
-
+	
+	@Value("${path.to.access.token.script}")
+	private String pathToAccessTokenScript;
+	
 	@Override
 	public String getAccessToken() {
 
 		reentrantLock.lock();
 		try {
-			String[] args = { "bash", "scripts/getting_access_token.sh" };
+			String[] args = { "bash", pathToAccessTokenScript };
 			Process shell = Runtime.getRuntime().exec(args);
 			try (BufferedReader input = new BufferedReader(new InputStreamReader(shell.getInputStream()));
 					BufferedReader errorInput = new BufferedReader(new InputStreamReader(shell.getErrorStream()))) {

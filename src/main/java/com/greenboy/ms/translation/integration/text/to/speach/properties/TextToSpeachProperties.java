@@ -82,7 +82,6 @@ public class TextToSpeachProperties {
 			String male;
 			String female;
 		}
-
 	}
 
 	@Getter

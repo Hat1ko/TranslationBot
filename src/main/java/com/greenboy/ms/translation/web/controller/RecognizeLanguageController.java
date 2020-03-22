@@ -38,6 +38,5 @@ public class RecognizeLanguageController {
 				.recognizedLanguages(recognizedLanguages).build();
 
 		return ResponseEntity.ok(response);
-
 	}
 }

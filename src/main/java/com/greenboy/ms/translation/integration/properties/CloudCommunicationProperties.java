@@ -27,7 +27,8 @@ public final class CloudCommunicationProperties {
 	private String contentType;
 	private Timeout timeout;
 	
-//TODO:	
+//
+//TODO:	ADD SCHEDULING
 //	@Scheduled(cron = )
 	public String getAccessToken() {
 		
