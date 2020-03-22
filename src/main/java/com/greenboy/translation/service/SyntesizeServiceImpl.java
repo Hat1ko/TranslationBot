@@ -1,6 +1,7 @@
 package com.greenboy.translation.service;
 
-import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +19,9 @@ import com.greenboy.translation.integration.text.to.speach.properties.TextToSpea
 import com.greenboy.translation.integration.text.to.speach.rest.SyntesizerCommunicationService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-//@Slf4j
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public final class SyntesizeServiceImpl implements SyntesizeService {
@@ -64,19 +66,45 @@ public final class SyntesizeServiceImpl implements SyntesizeService {
 	@Override
 	public List<Path> syntesizeTextTemp(List<String> texts) {
 
-		return null;
+		List<InputDTO> inputs = texts.stream().map(text -> InputDTO.builder().text(text).build())
+				.collect(Collectors.toList());
+
+		AudioConfigDTO audioConfigDTO = AudioConfigDTO.builder()
+				.audioEncoding(textToSpeachProperties.getAudioEncoding()).build();
+
+		// TODO: rework putting settings
+		VoiceDTO voiceDTO = VoiceDTO.builder().languageCode(textToSpeachProperties.getLanguageCode().getEnglish())
+				.name(textToSpeachProperties.getSyntesizerName().getEnglish())
+				.ssmlGender(textToSpeachProperties.getSsmlGender().getFemale()).build();
+
+		List<SyntesizeRequest> requests = inputs.stream()
+				.map(e -> SyntesizeRequest.builder().input(e).audioConfig(audioConfigDTO).voice(voiceDTO).build())
+				.collect(Collectors.toList());
+
+		List<SyntesizeResponse> responses = requests.stream()
+				.map(e -> syntesizerCommunicationService.getSyntesizedString(e)).collect(Collectors.toList());
+
+		Map<String, String> files = new HashMap<String, String>();
+
+		for (int i = 0; i < inputs.size(); i++) {
+			files.put(texts.get(i), responses.get(i).getAudioContent());
+		}
+
+		List<Path> pathsToFiles = files.entrySet().stream().map(e -> syntesizer.syntesizeTemp(e.getKey(), e.getValue()))
+				.collect(Collectors.toList());
+
+		return pathsToFiles;
 	}
 
 	@Override
-	public Boolean deleteText(File file) {
+	public Boolean deleteTextIfExist(Path PathToFile) {
 
-		return null;
+		try {
+			Files.delete(PathToFile);
+		} catch (IOException e) {
+			log.error("Error : {}", e.getMessage());
+		}
+
+		return Files.exists(PathToFile);
 	}
-
-	@Override
-	public Boolean deleteTextTemp(File file) {
-
-		return null;
-	}
-
 }
