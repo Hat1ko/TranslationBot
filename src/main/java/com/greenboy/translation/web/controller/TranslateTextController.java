@@ -28,9 +28,15 @@ public class TranslateTextController {
 	@PostMapping
 	public ResponseEntity<TranslateTextResponse> translateText(@RequestBody TranslateTextRequest request) {
 
-		List<String> translatedTexts = translationService.translateText(request.getContents(),
+		List<String> texts = request.getContents();
+
+		log.info("API call to translate texts | num of texts: {}", texts.size());
+
+		List<String> translatedTexts = translationService.translateText(texts,
 				translationRequestProperties.getLanguageCode().getEnglish(),
 				translationRequestProperties.getLanguageCode().getUkrainian());
+
+		log.info("API response to translate texts | num of translations : {}", translatedTexts.size());
 
 		TranslateTextResponse response = TranslateTextResponse.builder().translatedContents(translatedTexts).build();
 

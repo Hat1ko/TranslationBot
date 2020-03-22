@@ -29,7 +29,11 @@ public class SyntesizeTextController {
 		
 		List<String> textsToSyntesize = request.getContents();
 		
+		log.info("API call to syntesize texts | num of texts : {}", textsToSyntesize.size());
+		
 		List<Path> paths = syntesizeService.syntesizeText(textsToSyntesize);
+		
+		log.info("API response to syntesize texts | num of syntesized : {}", paths.size());
 		
 		SyntesizeTextResponse response = SyntesizeTextResponse.builder().paths(paths).build();
 		

@@ -28,8 +28,12 @@ public class RecognizeLanguageController {
 
 		List<String> texts = request.getContents();
 
+		log.info("API call to recognize language | num of texts : {}", texts.size());
+		
 		List<String> recognizedLanguages = translationService.recognizeLanguage(texts);
 
+		log.info("API response to recognize language | num of languages : {}");
+		
 		RecognizeLanguageResponse response = RecognizeLanguageResponse.builder()
 				.recognizedLanguages(recognizedLanguages).build();
 
