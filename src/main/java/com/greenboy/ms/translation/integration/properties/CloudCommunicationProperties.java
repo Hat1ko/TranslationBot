@@ -3,6 +3,7 @@ package com.greenboy.ms.translation.integration.properties;
 import java.util.Optional;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.greenboy.ms.translation.integration.gcloud.shell.rest.GoogleShellService;
@@ -27,15 +28,16 @@ public final class CloudCommunicationProperties {
 	private String contentType;
 	private Timeout timeout;
 	
-//
-//TODO:	ADD SCHEDULING
-//	@Scheduled(cron = )
 	public String getAccessToken() {
-		
 		if(!Optional.ofNullable(accessToken).isPresent()) {
 			accessToken = googleShellService.getAccessToken();
 		}
 		return accessToken;
+	}
+	
+	@Scheduled(cron = "0 0 * ? * *")
+	public void setAccessTokenNull() {
+		this.accessToken = null;
 	}
 	
 	@Getter
