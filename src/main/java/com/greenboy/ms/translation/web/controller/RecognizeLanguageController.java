@@ -32,7 +32,7 @@ public class RecognizeLanguageController {
 		
 		List<String> recognizedLanguages = translationService.recognizeLanguage(texts);
 
-		log.info("API response to recognize language | num of languages : {}");
+		log.info("API response to recognize language");
 		
 		RecognizeLanguageResponse response = RecognizeLanguageResponse.builder()
 				.recognizedLanguages(recognizedLanguages).build();
