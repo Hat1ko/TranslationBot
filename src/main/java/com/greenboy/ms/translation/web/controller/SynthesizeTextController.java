@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.greenboy.ms.translation.service.SyntesizeService;
-import com.greenboy.ms.translation.web.dto.request.SyntesizeTextRequest;
-import com.greenboy.ms.translation.web.dto.response.SyntesizeTextResponse;
+import com.greenboy.ms.translation.web.dto.request.SynthesizeTextRequest;
+import com.greenboy.ms.translation.web.dto.response.SynthesizeTextResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,21 +19,21 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RequestMapping(path = "api/v1/syntesize")
 @RestController
-public class SyntesizeTextController {
+public class SynthesizeTextController {
 
 	private final SyntesizeService syntesizeService;
 
 	@PostMapping
-	public ResponseEntity<SyntesizeTextResponse> syntesizeText(@RequestBody SyntesizeTextRequest request) {
+	public ResponseEntity<SynthesizeTextResponse> syntesizeText(@RequestBody SynthesizeTextRequest request) {
 
-		log.info("API call to syntesize texts | language : {}, gender : {}, content : {}", request.getLanguage(),
+		log.info("API call to synthesize texts | language : {}, gender : {}, content : {}", request.getLanguage(),
 				request.getGender(), request.getContent());
 
-		Path path = syntesizeService.syntesizeText(request.getContent(), request.getLanguage(), request.getGender());
+		Path path = syntesizeService.synthesizeText(request.getContent(), request.getLanguage(), request.getGender());
 
-		log.info("API response to syntesize texts");
+		log.info("API response to synthesize texts");
 
-		SyntesizeTextResponse response = SyntesizeTextResponse.builder().paths(path).build();
+		SynthesizeTextResponse response = SynthesizeTextResponse.builder().paths(path).build();
 
 		return ResponseEntity.ok(response);
 	}

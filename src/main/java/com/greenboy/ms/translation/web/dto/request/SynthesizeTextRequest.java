@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SyntesizeTextRequest {
+public class SynthesizeTextRequest {
 	
 	private String language;
 	private String gender;

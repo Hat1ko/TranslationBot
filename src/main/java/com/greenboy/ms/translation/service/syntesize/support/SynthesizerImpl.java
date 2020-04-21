@@ -12,10 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class SyntesizerImpl implements Syntesizer {
+public class SynthesizerImpl implements Synthesizer {
 
 	@Override
-	public Path syntesize(String text, String audioContent) {
+	public Path synthesize(String text, String audioContent) {
 
 		byte[] decodedAudioContent = Base64.getDecoder().decode(audioContent);
 
@@ -43,7 +43,7 @@ public class SyntesizerImpl implements Syntesizer {
 	}
 
 	@Override
-	public Path syntesizeTemp(String text, String audioContent) {
+	public Path synthesizeTemp(String text, String audioContent) {
 
 		byte[] decodedAudioContent = Base64.getDecoder().decode(audioContent);
 

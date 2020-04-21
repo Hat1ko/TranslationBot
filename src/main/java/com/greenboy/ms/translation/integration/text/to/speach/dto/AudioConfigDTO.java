@@ -12,6 +12,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AudioConfigDTO {
-
 	private String audioEncoding;
 }

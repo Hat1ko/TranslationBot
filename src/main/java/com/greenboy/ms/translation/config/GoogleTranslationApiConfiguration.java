@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import com.greenboy.ms.translation.integration.properties.CloudCommunicationProperties;
-import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeachProperties;
+import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeechProperties;
 
 @Configuration
 public class GoogleTranslationApiConfiguration {
@@ -36,12 +36,12 @@ public class GoogleTranslationApiConfiguration {
 				.setReadTimeout(Duration.ofMillis(cloudTranslationProperties.getTimeout().getRead())).build();
 	}
 
-	@Bean(name = { "syntesizerRest" })
-	public RestTemplate googleSyntesizerRest(RestTemplateBuilder restTemplateBuilder,
-			TextToSpeachProperties textToSpeachProperties) {
+	@Bean(name = {"synthesizerRest"})
+	public RestTemplate googleSynthesizerRest(RestTemplateBuilder restTemplateBuilder,
+											  TextToSpeechProperties textToSpeechProperties) {
 
-		return restTemplateBuilder.rootUri(textToSpeachProperties.getUri())
-				.setConnectTimeout(Duration.ofMillis(textToSpeachProperties.getTimeout().getConnect()))
-				.setReadTimeout(Duration.ofMillis(textToSpeachProperties.getTimeout().getRead())).build();
+		return restTemplateBuilder.rootUri(textToSpeechProperties.getUri())
+				.setConnectTimeout(Duration.ofMillis(textToSpeechProperties.getTimeout().getConnect()))
+				.setReadTimeout(Duration.ofMillis(textToSpeechProperties.getTimeout().getRead())).build();
 	}
 }

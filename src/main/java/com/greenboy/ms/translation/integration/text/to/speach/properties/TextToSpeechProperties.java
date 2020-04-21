@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @ConfigurationProperties(value = "text.to.speach")
 @Component
-public class TextToSpeachProperties {
+public class TextToSpeechProperties {
 
 	private String uri;
 	private String audioEncoding;

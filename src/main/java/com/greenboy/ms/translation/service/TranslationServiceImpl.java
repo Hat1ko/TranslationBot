@@ -59,10 +59,8 @@ public final class TranslationServiceImpl implements TranslationService {
 				.collect(Collectors.toList());
 
 		log.info("Responses from recognize texts | num of responses : {}", responses.size());
-		
-		List<String> recognizedLanguages = responses.stream().map(RecognitionResponseToLanguageConverter::convert)
+
+		return responses.stream().map(RecognitionResponseToLanguageConverter::convert)
 				.collect(Collectors.toList());
-		
-		return recognizedLanguages;
 	}
 }

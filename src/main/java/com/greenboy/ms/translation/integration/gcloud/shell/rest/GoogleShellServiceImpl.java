@@ -43,7 +43,7 @@ public class GoogleShellServiceImpl implements GoogleShellService {
 					throw new InternalException(errorInputMessage);
 				}
 
-				log.info("gcloud access token recieved | accessToken : {}", accessToken);
+				log.info("gcloud access token received | accessToken : {}", accessToken);
 
 				return String.format("Bearer %s", accessToken);
 			}

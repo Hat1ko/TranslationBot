@@ -6,16 +6,16 @@ import java.nio.file.Path;
 
 import org.springframework.stereotype.Service;
 
-import com.greenboy.ms.translation.dto.SyntesizeConfig;
+import com.greenboy.ms.translation.dto.SynthesizeConfig;
 import com.greenboy.ms.translation.integration.text.to.speach.dto.AudioConfigDTO;
 import com.greenboy.ms.translation.integration.text.to.speach.dto.InputDTO;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SyntesizeRequest;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SyntesizeResponse;
+import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeRequest;
+import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeResponse;
 import com.greenboy.ms.translation.integration.text.to.speach.dto.VoiceDTO;
-import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeachProperties;
-import com.greenboy.ms.translation.integration.text.to.speach.rest.SyntesizerCommunicationService;
-import com.greenboy.ms.translation.service.syntesize.support.SyntesizeConfigPreparator;
-import com.greenboy.ms.translation.service.syntesize.support.Syntesizer;
+import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeechProperties;
+import com.greenboy.ms.translation.integration.text.to.speach.rest.SynthesizerCommunicationService;
+import com.greenboy.ms.translation.service.syntesize.support.SynthesizeConfigPreparator;
+import com.greenboy.ms.translation.service.syntesize.support.Synthesizer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,61 +25,61 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public final class SyntesizeServiceImpl implements SyntesizeService {
 
-	private final SyntesizerCommunicationService syntesizerCommunicationService;
-	private final TextToSpeachProperties textToSpeachProperties;
-	private final Syntesizer syntesizer;
-	private final SyntesizeConfigPreparator syntesizeConfigPreparator;
+	private final SynthesizerCommunicationService synthesizerCommunicationService;
+	private final TextToSpeechProperties textToSpeechProperties;
+	private final Synthesizer synthesizer;
+	private final SynthesizeConfigPreparator syntesizeConfigPreparator;
 
 	@Override
-	public Path syntesizeText(String text, String language, String gender) {
+	public Path synthesizeText(String text, String language, String gender) {
 
 		log.info("Syntesize text | text : {}, language : {}, gender : {}", text, language, gender);
 
 		InputDTO input = InputDTO.builder().text(text).build();
 
-		AudioConfigDTO audioConfig = AudioConfigDTO.builder().audioEncoding(textToSpeachProperties.getAudioEncoding())
+		AudioConfigDTO audioConfig = AudioConfigDTO.builder().audioEncoding(textToSpeechProperties.getAudioEncoding())
 				.build();
 
-		SyntesizeConfig config = syntesizeConfigPreparator.prepareConfig(language, gender);
+		SynthesizeConfig config = syntesizeConfigPreparator.prepareConfig(language, gender);
 
 		VoiceDTO voice = VoiceDTO.builder().languageCode(config.getLanguageCode()).ssmlGender(config.getSsmlGender())
-				.name(config.getSyntesizerName()).build();
+				.name(config.getSynthesizerName()).build();
 
-		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice)
+		SynthesizeRequest request = SynthesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice)
 				.build();
 
-		SyntesizeResponse response = syntesizerCommunicationService.getSyntesizedString(request);
+		SynthesizeResponse response = synthesizerCommunicationService.getSynthesizedString(request);
 
 		log.info("Response | audioContent: {}", response.getAudioContent());
 
-		Path pathToFile = syntesizer.syntesize(text, response.getAudioContent());
+		Path pathToFile = synthesizer.synthesize(text, response.getAudioContent());
 
 		return pathToFile;
 	}
 
 	@Override
-	public Path syntesizeTextTemp(String text, String language, String gender) {
+	public Path synthesizeTextTemp(String text, String language, String gender) {
 
 		log.info("Syntesize text temporary | text : {}, language : {}, gender : {}", text, language, gender);
 
 		InputDTO input = InputDTO.builder().text(text).build();
 
-		AudioConfigDTO audioConfig = AudioConfigDTO.builder().audioEncoding(textToSpeachProperties.getAudioEncoding())
+		AudioConfigDTO audioConfig = AudioConfigDTO.builder().audioEncoding(textToSpeechProperties.getAudioEncoding())
 				.build();
 
-		SyntesizeConfig config = syntesizeConfigPreparator.prepareConfig(language, gender);
+		SynthesizeConfig config = syntesizeConfigPreparator.prepareConfig(language, gender);
 
 		VoiceDTO voice = VoiceDTO.builder().languageCode(config.getLanguageCode()).ssmlGender(config.getSsmlGender())
-				.name(config.getSyntesizerName()).build();
+				.name(config.getSynthesizerName()).build();
 
-		SyntesizeRequest request = SyntesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice)
+		SynthesizeRequest request = SynthesizeRequest.builder().audioConfig(audioConfig).input(input).voice(voice)
 				.build();
 
-		SyntesizeResponse response = syntesizerCommunicationService.getSyntesizedString(request);
+		SynthesizeResponse response = synthesizerCommunicationService.getSynthesizedString(request);
 
 		log.info("Response | audioContent: {}", response.getAudioContent());
 
-		Path pathToFile = syntesizer.syntesizeTemp(text, response.getAudioContent());
+		Path pathToFile = synthesizer.synthesizeTemp(text, response.getAudioContent());
 
 		return pathToFile;
 	}

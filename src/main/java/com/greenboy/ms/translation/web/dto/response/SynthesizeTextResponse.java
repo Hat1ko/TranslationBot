@@ -1,4 +1,6 @@
-package com.greenboy.ms.translation.integration.text.to.speach.dto;
+package com.greenboy.ms.translation.web.dto.response;
+
+import java.nio.file.Path;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +13,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SyntesizeRequest {
+public class SynthesizeTextResponse {
 	
-	private InputDTO input;
-	private VoiceDTO voice;
-	private AudioConfigDTO audioConfig;
+	private Path paths;
 }

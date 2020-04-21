@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.integration.text.to.speach.dto;
+package com.greenboy.ms.translation.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +11,9 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SyntesizeResponse {
-	private String audioContent;
+public class SynthesizeConfig {
+
+	private String languageCode;
+	private String ssmlGender;
+	private String synthesizerName;
 }
