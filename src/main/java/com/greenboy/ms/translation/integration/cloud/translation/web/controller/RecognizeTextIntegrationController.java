@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/gcloud/recognize")
+@RequestMapping(path = "gcloud/recognize")
 public class RecognizeTextIntegrationController {
 
 	private final RecognitionCommunicationService recognitionCommuniationService;

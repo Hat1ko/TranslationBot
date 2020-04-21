@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/gcloud/access_token")
+@RequestMapping(path = "gcloud/access_token")
 public class GoogleShellServiceController {
 
 	private final GoogleShellService googleShellService;

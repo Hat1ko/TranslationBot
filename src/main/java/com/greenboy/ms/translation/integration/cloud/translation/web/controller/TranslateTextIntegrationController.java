@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/gcloud/translate")
+@RequestMapping(path = "gcloud/translate")
 public class TranslateTextIntegrationController {
 
 	private final TranslationCommunicationService translationCommunicationService;

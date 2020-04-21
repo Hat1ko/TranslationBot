@@ -13,14 +13,14 @@ import com.greenboy.ms.translation.integration.text.to.speach.rest.SynthesizerCo
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RequestMapping(path = "/gcloud/syntesize")
+@RequestMapping(path = "gcloud/synthesize")
 @RestController
 public class SynthesizerCommunicationServiceController {
 	
 	private final SynthesizerCommunicationService synthesizerCommunicationService;
 	
 	@PostMapping
-	public ResponseEntity<SynthesizeResponse> syntesizeText(@RequestBody SynthesizeRequest request) {
+	public ResponseEntity<SynthesizeResponse> synthesizeText(@RequestBody SynthesizeRequest request) {
 		
 		SynthesizeResponse response = synthesizerCommunicationService.getSynthesizedString(request);
 		

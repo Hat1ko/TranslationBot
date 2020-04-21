@@ -17,14 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping(path = "api/v1/syntesize")
+@RequestMapping(path = "api/v1/synthesize")
 @RestController
 public class SynthesizeTextController {
 
 	private final SyntesizeService syntesizeService;
 
 	@PostMapping
-	public ResponseEntity<SynthesizeTextResponse> syntesizeText(@RequestBody SynthesizeTextRequest request) {
+	public ResponseEntity<SynthesizeTextResponse> synthesizeText(@RequestBody SynthesizeTextRequest request) {
 
 		log.info("API call to synthesize texts | language : {}, gender : {}, content : {}", request.getLanguage(),
 				request.getGender(), request.getContent());
