@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.greenboy.ms.translation.service.SyntesizeService;
+import com.greenboy.ms.translation.service.SynthesizeService;
 import com.greenboy.ms.translation.web.dto.request.SynthesizeTextRequest;
 import com.greenboy.ms.translation.web.dto.response.SynthesizeTextResponse;
 
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class SynthesizeTextController {
 
-	private final SyntesizeService syntesizeService;
+	private final SynthesizeService synthesizeService;
 
 	@PostMapping
 	public ResponseEntity<SynthesizeTextResponse> synthesizeText(@RequestBody SynthesizeTextRequest request) {
@@ -29,7 +29,7 @@ public class SynthesizeTextController {
 		log.info("API call to synthesize texts | language : {}, gender : {}, content : {}", request.getLanguage(),
 				request.getGender(), request.getContent());
 
-		Path path = syntesizeService.synthesizeText(request.getContent(), request.getLanguage(), request.getGender());
+		Path path = synthesizeService.synthesizeText(request.getContent(), request.getLanguage(), request.getGender());
 
 		log.info("API response to synthesize texts");
 

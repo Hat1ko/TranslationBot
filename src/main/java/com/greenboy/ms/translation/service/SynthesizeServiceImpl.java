@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public final class SyntesizeServiceImpl implements SyntesizeService {
+public final class SynthesizeServiceImpl implements SynthesizeService {
 
 	private final SynthesizerCommunicationService synthesizerCommunicationService;
 	private final TextToSpeechProperties textToSpeechProperties;

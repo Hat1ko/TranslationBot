@@ -2,7 +2,7 @@ package com.greenboy.ms.translation.service;
 
 import java.nio.file.Path;
 
-public interface SyntesizeService {
+public interface SynthesizeService {
 	
 	Path synthesizeText(String text, String language, String gender);
 	Path synthesizeTextTemp(String text, String language, String gender);
