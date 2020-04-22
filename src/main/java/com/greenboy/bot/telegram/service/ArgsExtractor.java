@@ -7,7 +7,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class ArgsExtractor {
-    public String[] extract(String receivedCommand){
-        return receivedCommand.substring(receivedCommand.indexOf(" ", 0) + 1).split(" ");
+
+    public String extractText(String receivedCommand) {
+        return receivedCommand.substring(receivedCommand.indexOf(" ", 0) + 1);
+    }
+
+    public String[] extractWords(String receivedCommand) {
+        return receivedCommand.split(" ");
+    }
+
+    public String[] extractWordsWithCommand(String receivedCommand) {
+        return extractWords(extractText(receivedCommand));
     }
 }

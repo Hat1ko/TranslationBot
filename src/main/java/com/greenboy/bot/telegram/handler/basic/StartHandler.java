@@ -32,7 +32,7 @@ public class StartHandler implements TelegramUpdateHandler {
 
 //      TODO: to be processed
         String receivedText = update.getMessage().getText();
-        String[] args = argsExtractor.extract(receivedText);
+        String[] args = argsExtractor.extractWordsWithCommand(receivedText);
 
         Optional<Integer> messageId = translationBot.sendMessage(chatId, String.format("Hello, %s", update.getMessage().getFrom()));
     }
