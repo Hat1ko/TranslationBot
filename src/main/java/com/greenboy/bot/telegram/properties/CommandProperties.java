@@ -10,6 +10,26 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("telegram.bot.command")
 @Component
 public class CommandProperties {
-    private String start;
-    private String help;
+
+
+    private Start start;
+    private Help help;
+
+    @Data
+    @Builder
+    public static class Start {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
+    public static class Help {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
 }
