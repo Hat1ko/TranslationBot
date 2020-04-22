@@ -12,4 +12,5 @@ import org.springframework.stereotype.Component;
 public class TranslationBotProperties {
     private final String token;
     private final String username;
+    private final Integer creatorId;
 }
