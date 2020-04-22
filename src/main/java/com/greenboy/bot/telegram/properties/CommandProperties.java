@@ -90,6 +90,15 @@ public class CommandProperties {
 
     @Data
     @Builder
+    public static class RecognizeLanguage {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
     public static class TranslateAndSynthesizeText {
         private String request;
         private String response;
