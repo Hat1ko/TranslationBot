@@ -5,6 +5,10 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 @ConfigurationProperties("telegram.bot.command")
@@ -13,6 +17,15 @@ public class CommandProperties {
 
     private Start start;
     private Help help;
+    private List<String> requestList;
+
+    @PostConstruct
+    private void prepareRequestList(){
+
+        requestList = new ArrayList<>();
+        requestList.add(start.getRequest());
+        requestList.add(help.getRequest());
+    }
 
     @Data
     @Builder
