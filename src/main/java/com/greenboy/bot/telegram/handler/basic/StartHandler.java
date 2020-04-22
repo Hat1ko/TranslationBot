@@ -4,6 +4,7 @@ import com.greenboy.bot.telegram.TranslationBot;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
 import com.greenboy.bot.telegram.properties.TranslationBotProperties;
+import com.greenboy.bot.telegram.service.ArgsExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ public class StartHandler implements TelegramUpdateHandler {
     private final TranslationBot translationBot;
     private final TranslationBotProperties botProperties;
     private final CommandProperties commandProperties;
+    private final ArgsExtractor argsExtractor;
 
     @Override
     public void handle(Update update) {
@@ -30,6 +32,7 @@ public class StartHandler implements TelegramUpdateHandler {
 
 //      TODO: to be processed
         String receivedText = update.getMessage().getText();
+        String[] args = argsExtractor.extract(receivedText);
 
         Optional<Integer> messageId = translationBot.sendMessage(chatId, String.format("Hello, %s", update.getMessage().getFrom()));
     }
