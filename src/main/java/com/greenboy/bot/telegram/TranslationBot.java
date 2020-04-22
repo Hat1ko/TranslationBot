@@ -1,5 +1,6 @@
 package com.greenboy.bot.telegram;
 
+import com.greenboy.bot.telegram.properties.TranslationBotProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Component
 public class TranslationBot extends TelegramLongPollingBot {
 
+    private final TranslationBotProperties botProperties;
+
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -18,11 +21,11 @@ public class TranslationBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return null;
+        return botProperties.getUsername();
     }
 
     @Override
     public String getBotToken() {
-        return null;
+        return botProperties.getToken();
     }
 }
