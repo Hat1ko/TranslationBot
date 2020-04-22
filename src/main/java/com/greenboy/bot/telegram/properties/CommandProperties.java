@@ -17,10 +17,11 @@ public class CommandProperties {
 
     private Start start;
     private Help help;
+
     private List<String> requestList;
 
     @PostConstruct
-    private void prepareRequestList(){
+    private void prepareRequestList() {
 
         requestList = new ArrayList<>();
         requestList.add(start.getRequest());

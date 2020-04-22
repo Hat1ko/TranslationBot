@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("telegram.bot")
 @Component
 public class TranslationBotProperties {
-    private final String token;
-    private final String username;
-    private final Integer creatorId;
+    private String token;
+    private String username;
+    private Integer creatorId;
 }
