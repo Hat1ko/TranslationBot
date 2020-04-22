@@ -20,7 +20,7 @@ public class StartHandler implements TelegramUpdateHandler {
 
     @Override
     public void handle(Update update) {
-        if(!update.getMessage().getText().startsWith(commandProperties.getStart())){
+        if(!update.getMessage().getText().startsWith(commandProperties.getStart().getRequest())){
             return;
         }
     }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommandProperties {
 
-
     private Start start;
     private Help help;
 

@@ -20,7 +20,7 @@ public class HelpHandler implements TelegramUpdateHandler {
 
     @Override
     public void handle(Update update) {
-        if(!update.getMessage().getText().startsWith(commandProperties.getHelp())){
+        if(!update.getMessage().getText().startsWith(commandProperties.getHelp().getRequest())){
             return;
         }
     }
