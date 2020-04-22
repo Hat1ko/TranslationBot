@@ -18,6 +18,12 @@ public class CommandProperties {
     private Start start;
     private Help help;
 
+    private TranslateText translateText;
+    private TranslateWords translateWords;
+    private SynthesizeText synthesizeText;
+    private SynthesizeWords synthesizeWords;
+    private TranslateAndSynthesizeText translateAndSynthesizeText;
+
     private List<String> requestList;
 
     @PostConstruct
@@ -40,6 +46,51 @@ public class CommandProperties {
     @Data
     @Builder
     public static class Help {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
+    public static class TranslateText {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
+    public static class TranslateWords {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
+    public static class SynthesizeText {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
+    public static class SynthesizeWords {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
+    }
+
+    @Data
+    @Builder
+    public static class TranslateAndSynthesizeText {
         private String request;
         private String response;
         private String method;
