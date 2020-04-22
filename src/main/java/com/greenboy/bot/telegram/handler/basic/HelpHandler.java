@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.Optional;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
@@ -20,8 +22,15 @@ public class HelpHandler implements TelegramUpdateHandler {
 
     @Override
     public void handle(Update update) {
-        if(!update.getMessage().getText().startsWith(commandProperties.getHelp().getRequest())){
+        if (!update.getMessage().getText().startsWith(commandProperties.getHelp().getRequest())) {
             return;
         }
+
+        Long chatId = update.getMessage().getChatId();
+
+//      TODO:  to be processed
+        String receivedText = update.getMessage().getText();
+
+        Optional<Integer> messageId = translationBot.sendMessage(chatId, "We will help you");
     }
 }
