@@ -12,7 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class StartHandler implements TelegramUpdateHandler {
+public class HelpHandler implements TelegramUpdateHandler {
 
     private final TranslationBot translationBot;
     private final TranslationBotProperties botProperties;
@@ -20,7 +20,7 @@ public class StartHandler implements TelegramUpdateHandler {
 
     @Override
     public void handle(Update update) {
-        if(!update.getMessage().getText().startsWith(commandProperties.getStart())){
+        if(!update.getMessage().getText().startsWith(commandProperties.getHelp())){
             return;
         }
     }

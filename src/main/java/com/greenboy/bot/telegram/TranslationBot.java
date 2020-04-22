@@ -27,7 +27,9 @@ public class TranslationBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-
+        for (TelegramUpdateHandler handler : telegramUpdateHandlers) {
+            handler.handle(update);
+        }
     }
 
     @Override
