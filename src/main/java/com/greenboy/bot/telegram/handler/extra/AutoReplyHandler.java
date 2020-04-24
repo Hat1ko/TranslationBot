@@ -22,17 +22,17 @@ public class AutoReplyHandler implements TelegramUpdateHandler {
 
     @Override
     public void handle(Update update) {
-        if(commandProperties.getRequestList().stream(req -> {
-            return update.getMessage().getText().startsWith(req);
-        }).count() > 0) {
+        if (commandProperties.getRequestList().stream()
+                .filter(req -> update.getMessage().getText().startsWith(req)).count() > 0){
             return;
         }
+
 
         Long chatId = update.getMessage().getChatId();
 
 //      TODO: to be processed soon
         String receivedText = update.getMessage().getText();
 
-        Optional<Integer> messageId = translationBot.sendMessage(chatId, String.format("Here should be some autpreply logic"));
+        Optional<Integer> messageId = translationBot.sendMessage(chatId, String.format("Here should be some auto-reply logic"));
     }
 }
