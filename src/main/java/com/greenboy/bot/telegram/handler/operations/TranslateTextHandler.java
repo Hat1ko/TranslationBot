@@ -18,7 +18,6 @@ import java.util.Optional;
 public class TranslateTextHandler implements TelegramUpdateHandler {
 
     private final TranslationBot translationBot;
-    private final TranslationBotProperties botProperties;
     private final CommandProperties commandProperties;
     private final ArgsExtractor argsExtractor;
 
