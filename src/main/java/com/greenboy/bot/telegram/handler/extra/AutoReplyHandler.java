@@ -27,7 +27,6 @@ public class AutoReplyHandler implements TelegramUpdateHandler {
             return;
         }
 
-
         Long chatId = update.getMessage().getChatId();
 
 //      TODO: to be processed soon
