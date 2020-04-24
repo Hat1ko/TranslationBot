@@ -22,6 +22,7 @@ public class CommandProperties {
     private TranslateWords translateWords;
     private SynthesizeText synthesizeText;
     private SynthesizeWords synthesizeWords;
+    private RecognizeLanguage recognizeLanguage;
     private TranslateAndSynthesizeText translateAndSynthesizeText;
 
     private List<String> requestList;
