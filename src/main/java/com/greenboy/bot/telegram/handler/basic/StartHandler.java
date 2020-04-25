@@ -3,9 +3,7 @@ package com.greenboy.bot.telegram.handler.basic;
 import com.greenboy.bot.telegram.TranslationBot;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
-import com.greenboy.bot.telegram.properties.TranslationBotProperties;
 import com.greenboy.bot.telegram.service.ActionResponse;
-import com.greenboy.bot.telegram.service.ArgsExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -20,7 +18,6 @@ public class StartHandler implements TelegramUpdateHandler {
 
     private final TranslationBot translationBot;
     private final CommandProperties commandProperties;
-    private final ArgsExtractor argsExtractor;
     private final ActionResponse actionResponse;
 
     @Override

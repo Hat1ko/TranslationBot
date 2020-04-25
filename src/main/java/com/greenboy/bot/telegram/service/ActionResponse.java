@@ -17,8 +17,8 @@ public class ActionResponse {
         return String.format(pattern, username);
     }
 
-    public String help() {
-        return null;
+    public String help(String command) {
+        return commandProperties.getHelp().getResponse();
     }
 
     public String autoReply() {
