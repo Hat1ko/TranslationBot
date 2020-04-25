@@ -5,6 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -18,7 +22,12 @@ public class ActionResponse {
     }
 
     public String help(String command) {
-        return commandProperties.getHelp().getResponse();
+        if (command.isBlank()) {
+            return commandProperties.getHelp().getResponse();
+        }
+        List<String> commandHelps = Arrays.asList(commandProperties.getHelp().getResponse().split("\n"));
+//      TODO: check for exception and send error message
+        return commandHelps.stream().filter(help -> help.startsWith(command)).findAny().get();
     }
 
     public String autoReply() {
@@ -47,5 +56,9 @@ public class ActionResponse {
 
     public String translateAndSynthesize() {
         return null;
+    }
+
+    public String error() {
+        return "Error";
     }
 }
