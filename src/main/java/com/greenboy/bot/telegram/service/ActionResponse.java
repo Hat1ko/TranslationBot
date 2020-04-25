@@ -12,8 +12,9 @@ public class ActionResponse {
 
     private final CommandProperties commandProperties;
 
-    public String start() {
-        return null;
+    public String start(String username) {
+        String pattern = commandProperties.getStart().getResponse();
+        return String.format(pattern, username);
     }
 
     public String help() {

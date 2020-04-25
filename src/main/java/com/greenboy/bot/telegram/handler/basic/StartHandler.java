@@ -4,6 +4,7 @@ import com.greenboy.bot.telegram.TranslationBot;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
 import com.greenboy.bot.telegram.properties.TranslationBotProperties;
+import com.greenboy.bot.telegram.service.ActionResponse;
 import com.greenboy.bot.telegram.service.ArgsExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class StartHandler implements TelegramUpdateHandler {
     private final TranslationBot translationBot;
     private final CommandProperties commandProperties;
     private final ArgsExtractor argsExtractor;
+    private final ActionResponse actionResponse;
 
     @Override
     public void handle(Update update) {
@@ -28,11 +30,7 @@ public class StartHandler implements TelegramUpdateHandler {
         }
 
         Long chatId = update.getMessage().getChatId();
-
-//      TODO: to be processed
-        String receivedText = update.getMessage().getText();
-        String[] args = argsExtractor.extractWordsWithCommand(receivedText);
-
-        Optional<Integer> messageId = translationBot.sendMessage(chatId, String.format("Hello, %s", update.getMessage().getFrom()));
+        String responseMessage = actionResponse.start(update.getMessage().getFrom().getFirstName());
+        Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);
     }
 }
