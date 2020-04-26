@@ -34,8 +34,8 @@ public class ActionResponse {
         return null;
     }
 
-    public String recognizeLanguage() {
-        return null;
+    public String recognizeLanguage(String textToRecognize, String language) {
+        return String.format(commandProperties.getRecognizeLanguage().getResponse(), textToRecognize, language);
     }
 
     public String translateText() {
