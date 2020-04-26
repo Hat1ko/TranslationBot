@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,7 +22,7 @@ public class TranslationRequestProperties {
 	
 	private LanguageCode languageCode;
 	private String mimeType;
-	
+
 	@Getter
 	@Setter
 	@AllArgsConstructor
