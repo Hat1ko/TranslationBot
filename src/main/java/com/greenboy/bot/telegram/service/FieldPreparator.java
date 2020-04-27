@@ -52,7 +52,7 @@ public class FieldPreparator {
         return null;
     }
 
-    public FromToTextDto fromToCodes(String textToTranslate) {
+    public FromToTextDto getFromToTextDto(String textToTranslate) {
 
         String from, to, fromCode, toCode;
         if (languageAvailability(textToTranslate)) {
