@@ -1,6 +1,6 @@
 package com.greenboy.bot.telegram.service;
 
-import com.greenboy.ms.translation.properties.TranslationLanguages;
+import com.greenboy.bot.telegram.properties.TranslationLanguages;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

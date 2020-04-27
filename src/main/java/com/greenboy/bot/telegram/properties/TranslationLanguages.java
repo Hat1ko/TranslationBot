@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.properties;
+package com.greenboy.bot.telegram.properties;
 
 import com.greenboy.ms.translation.integration.cloud.translation.properties.TranslationLanguageNameProperties;
 import com.greenboy.ms.translation.integration.cloud.translation.properties.TranslationRequestProperties;
