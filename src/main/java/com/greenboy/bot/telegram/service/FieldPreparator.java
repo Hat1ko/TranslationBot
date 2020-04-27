@@ -89,6 +89,7 @@ public class FieldPreparator {
     }
 
     public String ofSynthesizing(String languageArg) {
+
         if (translationLanguages.getEnglish().getLanguageName().equals(languageArg)
                 || translationLanguages.getEnglish().getLanguageShort().equals(languageArg)) {
             return textToSpeechProperties.getLanguageCode().getEnglish();
@@ -101,10 +102,12 @@ public class FieldPreparator {
                 || translationLanguages.getUkrainian().getLanguageShort().equals(languageArg)) {
             return textToSpeechProperties.getLanguageCode().getUkrainian();
         }
+
         return null;
     }
 
     public String ofToSynthesizing(String from) {
+
         if(textToSpeechProperties.getLanguageCode().getEnglish().equals(ofSynthesizing(from))) {
             return textToSpeechProperties.getLanguageCode().getUkrainian();
         }
@@ -114,6 +117,7 @@ public class FieldPreparator {
         if(textToSpeechProperties.getLanguageCode().getUkrainian().equals(ofSynthesizing(from))) {
             return textToSpeechProperties.getLanguageCode().getEnglish();
         }
+
         return null;
     }
 }
