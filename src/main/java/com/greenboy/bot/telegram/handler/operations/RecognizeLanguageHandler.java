@@ -36,7 +36,7 @@ public class RecognizeLanguageHandler implements TelegramUpdateHandler {
         String receivedText = update.getMessage().getText();
         String textToRecognize = argsExtractor.extractText(receivedText);
         String language = translationService.recognizeLanguage(Arrays.asList(textToRecognize)).get(0);
-        String responseMessage = actionResponse.recognizeLanguage(textToRecognize, language);
+        String responseMessage = actionResponse.recognizeLanguage(language);
         Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);
     }
 }

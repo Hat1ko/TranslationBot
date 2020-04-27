@@ -34,12 +34,12 @@ public class ActionResponse {
         return null;
     }
 
-    public String recognizeLanguage(String textToRecognize, String language) {
-        return String.format(commandProperties.getRecognizeLanguage().getResponse(), textToRecognize, language);
+    public String recognizeLanguage(String language) {
+        return String.format(commandProperties.getRecognizeLanguage().getResponse(), language);
     }
 
-    public String translateText() {
-        return null;
+    public String translateText(String translatedText) {
+        return String.format(commandProperties.getTranslateText().getRequest(), translatedText);
     }
 
     public String translateWords() {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class TranslateConfigurationFieldPreparator implements ConfigurationFieldPreparator {
+public class TranslateFieldPreparator implements ConfigurationFieldPreparator {
 
     private final TranslationLanguages translationLanguages;
 
