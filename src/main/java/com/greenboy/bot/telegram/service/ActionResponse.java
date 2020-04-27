@@ -41,8 +41,17 @@ public class ActionResponse {
         return String.format(commandProperties.getTranslateText().getRequest(), translatedText);
     }
 
-    public String translateWords() {
-        return null;
+    public String translateWords(Integer index, String... words) {
+        List<String> responses = Arrays.asList(commandProperties.getTranslateWords().getResponse().split(","));
+        switch (index) {
+            case 0:
+            case 2:
+                return responses.get(index);
+            case 1:
+                return String.format(responses.get(index), words[0], words[1]);
+            default:
+                return null;
+        }
     }
 
     public String synthesizeText() {
