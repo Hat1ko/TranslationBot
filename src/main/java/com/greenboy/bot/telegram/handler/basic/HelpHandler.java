@@ -19,7 +19,6 @@ public class HelpHandler implements TelegramUpdateHandler {
 
     private final TranslationBot translationBot;
     private final CommandProperties commandProperties;
-    private final ArgsExtractor argsExtractor;
     private final ActionResponse actionResponse;
 
     @Override
@@ -30,7 +29,7 @@ public class HelpHandler implements TelegramUpdateHandler {
 
         Long chatId = update.getMessage().getChatId();
         String receivedText = update.getMessage().getText();
-        String command = argsExtractor.removeFirstWord(receivedText);
+        String command = ArgsExtractor.removeFirstWord(receivedText);
         String responseMessage = actionResponse.help(command);
         Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);
     }
