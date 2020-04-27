@@ -1,6 +1,6 @@
 package com.greenboy.bot.telegram.service;
 
-public interface LanguageCodePreparator {
+public interface ConfigurationFieldPreparator {
     String of(String languageArg);
     String ofTo(String from);
 }
