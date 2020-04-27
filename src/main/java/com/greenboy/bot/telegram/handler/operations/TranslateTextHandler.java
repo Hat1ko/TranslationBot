@@ -37,25 +37,23 @@ public class TranslateTextHandler implements TelegramUpdateHandler {
 
         Long chatId = update.getMessage().getChatId();
         String receivedText = update.getMessage().getText();
-        String textToTranslate = argsExtractor.extractText(receivedText);
+        String textToTranslate = argsExtractor.removeFirstWord(receivedText);
 
         String from, fromCode, to, toCode;
         if (checkForLanguageAvailability(textToTranslate)) {
             from = argsExtractor.extractWords(textToTranslate).get(0);
             fromCode = translateFieldPreparator.of(from);
-            textToTranslate = argsExtractor.extractText(textToTranslate);
+            textToTranslate = argsExtractor.removeFirstWord(textToTranslate);
             if (checkForLanguageAvailability(textToTranslate)) {
                 to = argsExtractor.extractWords(textToTranslate).get(0);
                 toCode = translateFieldPreparator.of(to);
-                textToTranslate = argsExtractor.extractText(textToTranslate);
+                textToTranslate = argsExtractor.removeFirstWord(textToTranslate);
             } else {
-                toCode = translateFieldPreparator.ofTo(
-                        translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0));
+                toCode = translateFieldPreparator.ofTo(fromCode);
             }
         } else {
             fromCode = translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0);
-            toCode = translateFieldPreparator.ofTo(
-                    translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0));
+            toCode = translateFieldPreparator.ofTo(fromCode);
         }
 
         String translatedText = translationService.translateText(Arrays.asList(textToTranslate), fromCode, toCode).get(0);

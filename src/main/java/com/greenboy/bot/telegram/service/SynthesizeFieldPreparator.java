@@ -4,11 +4,12 @@ import com.greenboy.bot.telegram.properties.TranslationLanguages;
 import com.greenboy.ms.translation.integration.text.to.speech.properties.TextToSpeechProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service
+@Component
 public class SynthesizeFieldPreparator implements ConfigurationFieldPreparator {
 
     private final TextToSpeechProperties textToSpeechProperties;

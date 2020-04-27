@@ -3,7 +3,6 @@ package com.greenboy.bot.telegram.handler.operations;
 import com.greenboy.bot.telegram.TranslationBot;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
-import com.greenboy.bot.telegram.properties.TranslationBotProperties;
 import com.greenboy.bot.telegram.service.ActionResponse;
 import com.greenboy.bot.telegram.service.ArgsExtractor;
 import com.greenboy.ms.translation.service.TranslationService;
@@ -34,7 +33,7 @@ public class RecognizeLanguageHandler implements TelegramUpdateHandler {
 
         Long chatId = update.getMessage().getChatId();
         String receivedText = update.getMessage().getText();
-        String textToRecognize = argsExtractor.extractText(receivedText);
+        String textToRecognize = argsExtractor.removeFirstWord(receivedText);
         String language = translationService.recognizeLanguage(Arrays.asList(textToRecognize)).get(0);
         String responseMessage = actionResponse.recognizeLanguage(language);
         Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);

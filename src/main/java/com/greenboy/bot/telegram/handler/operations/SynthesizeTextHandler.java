@@ -3,7 +3,6 @@ package com.greenboy.bot.telegram.handler.operations;
 import com.greenboy.bot.telegram.TranslationBot;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
-import com.greenboy.bot.telegram.properties.TranslationBotProperties;
 import com.greenboy.bot.telegram.service.ArgsExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +30,7 @@ public class SynthesizeTextHandler implements TelegramUpdateHandler {
 
 //      TODO: to be processed soon
         String receivedText = update.getMessage().getText();
-        String extractedText = argsExtractor.extractText(receivedText);
+        String extractedText = argsExtractor.removeFirstWord(receivedText);
 
         Optional<Integer> messageId = translationBot.sendMessage(chatId,
                 String.format("here gonna be your text synthesized | : your text", receivedText));

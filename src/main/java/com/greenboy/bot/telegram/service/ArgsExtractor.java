@@ -1,24 +1,20 @@
 package com.greenboy.bot.telegram.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
-@Service
+@Component
 public class ArgsExtractor {
 
-    public String extractText(String receivedCommand) {
+    public String removeFirstWord(String receivedCommand) {
         return receivedCommand.substring(receivedCommand.indexOf(" ") + 1);
     }
 
     public List<String> extractWords(String receivedCommand) {
         return Arrays.asList(receivedCommand.split(" "));
-    }
-
-    public List<String> extractWordsWithCommand(String receivedCommand) {
-        return extractWords(extractText(receivedCommand));
     }
 }

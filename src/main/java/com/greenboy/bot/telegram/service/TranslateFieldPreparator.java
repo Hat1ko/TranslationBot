@@ -3,11 +3,11 @@ package com.greenboy.bot.telegram.service;
 import com.greenboy.bot.telegram.properties.TranslationLanguages;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service
+@Component
 public class TranslateFieldPreparator implements ConfigurationFieldPreparator {
 
     private final TranslationLanguages translationLanguages;

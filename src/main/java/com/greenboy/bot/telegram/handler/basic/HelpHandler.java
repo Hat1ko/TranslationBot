@@ -30,7 +30,7 @@ public class HelpHandler implements TelegramUpdateHandler {
 
         Long chatId = update.getMessage().getChatId();
         String receivedText = update.getMessage().getText();
-        String command = argsExtractor.extractText(receivedText);
+        String command = argsExtractor.removeFirstWord(receivedText);
         String responseMessage = actionResponse.help(command);
         Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);
     }
