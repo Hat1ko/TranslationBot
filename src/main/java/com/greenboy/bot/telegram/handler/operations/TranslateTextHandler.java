@@ -38,21 +38,27 @@ public class TranslateTextHandler implements TelegramUpdateHandler {
         Long chatId = update.getMessage().getChatId();
         String receivedText = update.getMessage().getText();
         String textToTranslate = argsExtractor.extractText(receivedText);
-        String from = null;
-        String to = null;
 
+        String from, fromCode, to, toCode;
         if (checkForLanguageAvailability(textToTranslate)) {
             from = argsExtractor.extractWords(textToTranslate).get(0);
+            fromCode = translateFieldPreparator.of(from);
             textToTranslate = argsExtractor.extractText(textToTranslate);
+            if (checkForLanguageAvailability(textToTranslate)) {
+                to = argsExtractor.extractWords(textToTranslate).get(0);
+                toCode = translateFieldPreparator.of(to);
+                textToTranslate = argsExtractor.extractText(textToTranslate);
+            } else {
+                toCode = translateFieldPreparator.ofTo(
+                        translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0));
+            }
+        } else {
+            fromCode = translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0);
+            toCode = translateFieldPreparator.ofTo(
+                    translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0));
         }
-        if (checkForLanguageAvailability(textToTranslate)) {
-            to = argsExtractor.extractWords(textToTranslate).get(0);
-            textToTranslate = argsExtractor.extractText(textToTranslate);
-        }
-        String translatedText = translationService.translateText(
-                Arrays.asList(textToTranslate),
-                translateFieldPreparator.of(from),
-                translateFieldPreparator.of(to)).get(0);
+
+        String translatedText = translationService.translateText(Arrays.asList(textToTranslate), fromCode, toCode).get(0);
 
         Optional<Integer> messageId = translationBot.sendMessage(chatId, actionResponse.translateText(translatedText));
     }
