@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.integration.text.to.speach.properties;
+package com.greenboy.ms.translation.integration.text.to.speech.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ConfigurationProperties(value = "text.to.speach")
+@ConfigurationProperties(value = "text.to.speech")
 @Component
 public class TextToSpeechProperties {
 

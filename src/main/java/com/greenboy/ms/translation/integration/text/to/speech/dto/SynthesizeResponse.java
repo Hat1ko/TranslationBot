@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.integration.text.to.speach.dto;
+package com.greenboy.ms.translation.integration.text.to.speech.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

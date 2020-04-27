@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import com.greenboy.ms.translation.integration.properties.CloudCommunicationProperties;
-import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeechProperties;
+import com.greenboy.ms.translation.integration.text.to.speech.properties.TextToSpeechProperties;
 
 @Configuration
 public class GoogleTranslationApiConfiguration {

@@ -7,13 +7,13 @@ import java.nio.file.Path;
 import org.springframework.stereotype.Service;
 
 import com.greenboy.ms.translation.dto.SynthesizeConfig;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.AudioConfigDTO;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.InputDTO;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeRequest;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeResponse;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.VoiceDTO;
-import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeechProperties;
-import com.greenboy.ms.translation.integration.text.to.speach.rest.SynthesizerCommunicationService;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.AudioConfigDTO;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.InputDTO;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.SynthesizeRequest;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.SynthesizeResponse;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.VoiceDTO;
+import com.greenboy.ms.translation.integration.text.to.speech.properties.TextToSpeechProperties;
+import com.greenboy.ms.translation.integration.text.to.speech.rest.SynthesizerCommunicationService;
 import com.greenboy.ms.translation.service.syntesize.support.SynthesizeConfigPreparator;
 import com.greenboy.ms.translation.service.syntesize.support.Synthesizer;
 

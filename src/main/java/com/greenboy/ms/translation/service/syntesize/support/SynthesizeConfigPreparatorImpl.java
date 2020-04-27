@@ -3,7 +3,7 @@ package com.greenboy.ms.translation.service.syntesize.support;
 import org.springframework.stereotype.Component;
 
 import com.greenboy.ms.translation.dto.SynthesizeConfig;
-import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeechProperties;
+import com.greenboy.ms.translation.integration.text.to.speech.properties.TextToSpeechProperties;
 
 import lombok.RequiredArgsConstructor;
 

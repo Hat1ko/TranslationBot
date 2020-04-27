@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.integration.text.to.speach.rest;
+package com.greenboy.ms.translation.integration.text.to.speech.rest;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.greenboy.ms.translation.builder.HttpHeadersBuilder;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeRequest;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeResponse;
-import com.greenboy.ms.translation.integration.text.to.speach.properties.TextToSpeechProperties;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.SynthesizeRequest;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.SynthesizeResponse;
+import com.greenboy.ms.translation.integration.text.to.speech.properties.TextToSpeechProperties;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

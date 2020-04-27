@@ -1,4 +1,4 @@
-package com.greenboy.ms.translation.integration.text.to.speach.web.controller;
+package com.greenboy.ms.translation.integration.text.to.speech.web.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeRequest;
-import com.greenboy.ms.translation.integration.text.to.speach.dto.SynthesizeResponse;
-import com.greenboy.ms.translation.integration.text.to.speach.rest.SynthesizerCommunicationService;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.SynthesizeRequest;
+import com.greenboy.ms.translation.integration.text.to.speech.dto.SynthesizeResponse;
+import com.greenboy.ms.translation.integration.text.to.speech.rest.SynthesizerCommunicationService;
 
 import lombok.RequiredArgsConstructor;
 
