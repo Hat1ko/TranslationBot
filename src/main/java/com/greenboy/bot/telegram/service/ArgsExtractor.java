@@ -3,6 +3,9 @@ package com.greenboy.bot.telegram.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Slf4j
 @Service
 public class ArgsExtractor {
@@ -11,11 +14,11 @@ public class ArgsExtractor {
         return receivedCommand.substring(receivedCommand.indexOf(" ") + 1);
     }
 
-    public String[] extractWords(String receivedCommand) {
-        return receivedCommand.split(" ");
+    public List<String> extractWords(String receivedCommand) {
+        return Arrays.asList(receivedCommand.split(" "));
     }
 
-    public String[] extractWordsWithCommand(String receivedCommand) {
+    public List<String> extractWordsWithCommand(String receivedCommand) {
         return extractWords(extractText(receivedCommand));
     }
 }
