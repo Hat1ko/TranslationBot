@@ -1,14 +1,22 @@
 package com.greenboy.bot.telegram.handler.operations;
 
 import com.greenboy.bot.telegram.TranslationBot;
+import com.greenboy.bot.telegram.dto.FromToTextDto;
+import com.greenboy.bot.telegram.dto.LanguageAndGenderDto;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
+import com.greenboy.bot.telegram.service.ActionResponse;
 import com.greenboy.bot.telegram.service.ArgsExtractor;
+import com.greenboy.bot.telegram.service.FieldPreparator;
+import com.greenboy.ms.translation.service.SynthesizeService;
+import com.greenboy.ms.translation.service.TranslationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Slf4j
@@ -17,8 +25,11 @@ import java.util.Optional;
 public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler {
 
     private final TranslationBot translationBot;
+    private final FieldPreparator fieldPreparator;
+    private final TranslationService translationService;
+    private final SynthesizeService synthesizeService;
     private final CommandProperties commandProperties;
-    private final ArgsExtractor argsExtractor;
+    private final ActionResponse actionResponse;
 
     @Override
     public void handle(Update update) {
@@ -27,12 +38,14 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
         }
 
         Long chatId = update.getMessage().getChatId();
-
-//      TODO: to be processed soon
         String receivedText = update.getMessage().getText();
-        String extractedText = argsExtractor.removeFirstWord(receivedText);
+        String text = ArgsExtractor.removeFirstWord(receivedText);
 
-        Optional<Integer> messageId = translationBot.sendMessage(chatId,
-                String.format("Here must be translated and synthesized text : %s", extractedText));
+        FromToTextDto codes = fieldPreparator.getFromToTextDto(text);
+        LanguageAndGenderDto dto = fieldPreparator.getLanguageAndGenderDto(text);
+        String translatedText = translationService.translateText(
+                Arrays.asList(codes.getModifiedText()), codes.getFromCode(), codes.getToCode()).get(0);
+        Path pathToSynthesized = synthesizeService.synthesizeText(translatedText, dto.getLanguageCode(), dto.getGender());
+        Optional<Integer> messageId = translationBot.sendAudio(chatId, translatedText, pathToSynthesized.toFile());
     }
 }
