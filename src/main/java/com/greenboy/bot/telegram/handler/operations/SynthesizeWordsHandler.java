@@ -28,7 +28,7 @@ public class SynthesizeWordsHandler implements TelegramUpdateHandler {
 
     @Override
     public void handle(Update update) {
-        if (!update.getMessage().getText().startsWith(commandPropaerties.getSynthesizeWords().getRequest())) {
+        if (!update.getMessage().getText().startsWith(commandProperties.getSynthesizeWords().getRequest())) {
             return;
         }
 
