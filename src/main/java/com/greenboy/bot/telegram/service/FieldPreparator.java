@@ -1,6 +1,7 @@
 package com.greenboy.bot.telegram.service;
 
 import com.greenboy.bot.telegram.dto.FromToTextDto;
+import com.greenboy.bot.telegram.dto.LanguageAndGenderDto;
 import com.greenboy.bot.telegram.properties.TranslationLanguages;
 import com.greenboy.ms.translation.integration.text.to.speech.properties.TextToSpeechProperties;
 import com.greenboy.ms.translation.service.TranslationService;
@@ -30,7 +31,7 @@ public class FieldPreparator {
             return translationLanguages.getRussian().getLanguageCode();
         }
         if (translationLanguages.getUkrainian().getLanguageName().equals(languageArg)
-                || translationLanguages.getUkrainian().getLanguageShort().equals(languageArg)){
+                || translationLanguages.getUkrainian().getLanguageShort().equals(languageArg)) {
             return translationLanguages.getUkrainian().getLanguageCode();
         }
 
@@ -39,13 +40,13 @@ public class FieldPreparator {
 
     public String ofToTranslation(String from) {
 
-        if(translationLanguages.getUkrainian().getLanguageCode().equals(ofToTranslation(from))) {
+        if (translationLanguages.getUkrainian().getLanguageCode().equals(ofToTranslation(from))) {
             return translationLanguages.getEnglish().getLanguageCode();
         }
-        if(translationLanguages.getRussian().getLanguageCode().equals(ofToTranslation(from))) {
+        if (translationLanguages.getRussian().getLanguageCode().equals(ofToTranslation(from))) {
             return translationLanguages.getEnglish().getLanguageCode();
         }
-        if(translationLanguages.getEnglish().getLanguageCode().equals(ofToTranslation(from))) {
+        if (translationLanguages.getEnglish().getLanguageCode().equals(ofToTranslation(from))) {
             return translationLanguages.getUkrainian().getLanguageCode();
         }
 
@@ -92,32 +93,41 @@ public class FieldPreparator {
 
         if (translationLanguages.getEnglish().getLanguageName().equals(languageArg)
                 || translationLanguages.getEnglish().getLanguageShort().equals(languageArg)) {
-            return textToSpeechProperties.getLanguageCode().getEnglish();
+            return "en";
         }
         if (translationLanguages.getRussian().getLanguageName().equals(languageArg)
                 || translationLanguages.getRussian().getLanguageShort().equals(languageArg)) {
-            return textToSpeechProperties.getLanguageCode().getRussian();
+            return "ru";
         }
         if (translationLanguages.getUkrainian().getLanguageName().equals(languageArg)
                 || translationLanguages.getUkrainian().getLanguageShort().equals(languageArg)) {
-            return textToSpeechProperties.getLanguageCode().getUkrainian();
+            return "uk";
         }
 
         return null;
     }
 
-    public String ofToSynthesizing(String from) {
+    public LanguageAndGenderDto getLanguageAndGenderDto(String receivedText) {
 
-        if(textToSpeechProperties.getLanguageCode().getEnglish().equals(ofSynthesizing(from))) {
-            return textToSpeechProperties.getLanguageCode().getUkrainian();
-        }
-        if(textToSpeechProperties.getLanguageCode().getRussian().equals(ofSynthesizing(from))) {
-            return textToSpeechProperties.getLanguageCode().getEnglish();
-        }
-        if(textToSpeechProperties.getLanguageCode().getUkrainian().equals(ofSynthesizing(from))) {
-            return textToSpeechProperties.getLanguageCode().getEnglish();
+        String language, languageCode, gender;
+        if (languageAvailability(receivedText)) {
+            language = ArgsExtractor.extractWords(receivedText).get(0);
+            languageCode = ofSynthesizing(language);
+            receivedText = ArgsExtractor.removeFirstWord(receivedText);
+        } else {
+            languageCode = translationService.recognizeLanguage(
+                    Arrays.asList(ArgsExtractor.removeFirstWord(receivedText))).get(0);
         }
 
-        return null;
+        String finalReceivedText = receivedText;
+        if (translationLanguages.getGenderList().stream()
+                .filter(g -> g.equals(ArgsExtractor.extractWords(finalReceivedText))).count() > 0) {
+            gender = ArgsExtractor.extractWords(receivedText).get(0).toUpperCase();
+            receivedText = ArgsExtractor.removeFirstWord(receivedText);
+        } else {
+            gender = "FEMALE";
+        }
+
+        return LanguageAndGenderDto.builder().languageCode(languageCode).gender(gender).synthesizeText(receivedText).build();
     }
 }

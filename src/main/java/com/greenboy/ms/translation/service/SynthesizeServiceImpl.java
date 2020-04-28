@@ -33,7 +33,7 @@ public final class SynthesizeServiceImpl implements SynthesizeService {
 	@Override
 	public Path synthesizeText(String text, String language, String gender) {
 
-		log.info("Syntesize text | text : {}, language : {}, gender : {}", text, language, gender);
+		log.info("Synthesize text | text : {}, language : {}, gender : {}", text, language, gender);
 
 		InputDTO input = InputDTO.builder().text(text).build();
 
@@ -60,7 +60,7 @@ public final class SynthesizeServiceImpl implements SynthesizeService {
 	@Override
 	public Path synthesizeTextTemp(String text, String language, String gender) {
 
-		log.info("Syntesize text temporary | text : {}, language : {}, gender : {}", text, language, gender);
+		log.info("Synthesize text temporary | text : {}, language : {}, gender : {}", text, language, gender);
 
 		InputDTO input = InputDTO.builder().text(text).build();
 
