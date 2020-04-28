@@ -32,8 +32,6 @@ public class SynthesizeTextHandler implements TelegramUpdateHandler {
         }
 
         Long chatId = update.getMessage().getChatId();
-
-//      TODO: to be processed soon
         String receivedText = update.getMessage().getText();
         String textToSynthesize = ArgsExtractor.removeFirstWord(receivedText);
         LanguageAndGenderDto dto = fieldPreparator.getLanguageAndGenderDto(textToSynthesize);
