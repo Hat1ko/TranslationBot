@@ -29,7 +29,6 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
     private final TranslationService translationService;
     private final SynthesizeService synthesizeService;
     private final CommandProperties commandProperties;
-    private final ActionResponse actionResponse;
 
     @Override
     public void handle(Update update) {
