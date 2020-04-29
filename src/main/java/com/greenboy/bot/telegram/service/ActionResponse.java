@@ -21,12 +21,13 @@ public class ActionResponse {
     }
 
     public String help(String command) {
-        if (command.isBlank()) {
+        if (Arrays.asList(command.split(" ")).size() < 2) {
             return commandProperties.getHelp().getResponse();
         }
         List<String> commandHelps = Arrays.asList(commandProperties.getHelp().getResponse().split("\n"));
-//      TODO: check for exception and send error message
-        return commandHelps.stream().filter(help -> help.startsWith(command)).findAny().get();
+        String arg = command.split(" ")[1];
+        //      TODO: check for exception and send error message
+        return commandHelps.stream().filter(help -> help.startsWith(arg)).findAny().get();
     }
 
     public String autoReply() {
