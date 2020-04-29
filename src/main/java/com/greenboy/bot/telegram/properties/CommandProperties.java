@@ -33,6 +33,12 @@ public class CommandProperties {
         requestList = new ArrayList<>();
         requestList.add(start.getRequest());
         requestList.add(help.getRequest());
+        requestList.add(translateText.getRequest());
+        requestList.add(translateWords.getRequest());
+        requestList.add(synthesizeText.getRequest());
+        requestList.add(synthesizeWords.getRequest());
+        requestList.add(recognizeLanguage.getRequest());
+        requestList.add(translateAndSynthesizeText.getRequest());
     }
 
     @Data
@@ -84,7 +90,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class RecognizeLanguage {
         private String request;
         private String response;
