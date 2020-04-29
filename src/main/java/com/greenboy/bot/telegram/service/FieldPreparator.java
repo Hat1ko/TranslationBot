@@ -40,13 +40,19 @@ public class FieldPreparator {
 
     public String ofToTranslation(String from) {
 
-        if (translationLanguages.getUkrainian().getLanguageCode().equals(ofToTranslation(from))) {
+        if (translationLanguages.getUkrainian().getLanguageCode().equals(from)
+                || translationLanguages.getUkrainian().getLanguageShort().equals(from)
+                || translationLanguages.getUkrainian().getLanguageName().equals(from)) {
             return translationLanguages.getEnglish().getLanguageCode();
         }
-        if (translationLanguages.getRussian().getLanguageCode().equals(ofToTranslation(from))) {
+        if (translationLanguages.getRussian().getLanguageCode().equals(from)
+                || translationLanguages.getRussian().getLanguageShort().equals(from)
+                || translationLanguages.getRussian().getLanguageName().equals(from)) {
             return translationLanguages.getEnglish().getLanguageCode();
         }
-        if (translationLanguages.getEnglish().getLanguageCode().equals(ofToTranslation(from))) {
+        if (translationLanguages.getEnglish().getLanguageCode().equals(from)
+                || translationLanguages.getEnglish().getLanguageShort().equals(from)
+                || translationLanguages.getEnglish().getLanguageName().equals(from)) {
             return translationLanguages.getUkrainian().getLanguageCode();
         }
 
@@ -55,21 +61,24 @@ public class FieldPreparator {
 
     public FromToTextDto getFromToTextDto(String textToTranslate) {
 
-        String from, to, fromCode, toCode;
+        String from, to, fromCode, toCode = null;
         if (languageAvailability(textToTranslate)) {
             from = ArgsExtractor.extractWords(textToTranslate).get(0);
             fromCode = ofTranslation(from);
             textToTranslate = ArgsExtractor.removeFirstWord(textToTranslate);
             if (languageAvailability(textToTranslate)) {
                 to = ArgsExtractor.extractWords(textToTranslate).get(0);
-                toCode = ofToTranslation(to);
+                toCode = ofTranslation(to);
                 textToTranslate = ArgsExtractor.removeFirstWord(textToTranslate);
             } else {
-                toCode = ofToTranslation(fromCode);
+                toCode = fromCode;
             }
         } else {
             fromCode = translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0);
             toCode = ofToTranslation(fromCode);
+        }
+        if(toCode.equals(fromCode)) {
+            fromCode = translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0);
         }
 
         return FromToTextDto.builder().fromCode(fromCode).toCode(toCode).modifiedText(textToTranslate).build();

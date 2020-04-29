@@ -26,7 +26,6 @@ public class ActionResponse {
         }
         List<String> commandHelps = Arrays.asList(commandProperties.getHelp().getResponse().split("\n"));
         String arg = command.split(" ")[1];
-        //      TODO: check for exception and send error message
         return commandHelps.stream().filter(help -> help.startsWith(arg)).findAny().get();
     }
 
@@ -39,7 +38,7 @@ public class ActionResponse {
     }
 
     public String translateText(String translatedText) {
-        return String.format(commandProperties.getTranslateText().getRequest(), translatedText);
+        return String.format(commandProperties.getTranslateText().getResponse(), translatedText);
     }
 
     public String translateWords(Integer index, String... words) {

@@ -32,7 +32,7 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
 
     @Override
     public void handle(Update update) {
-        if (update.getMessage().getText().startsWith(commandProperties.getTranslateAndSynthesizeText().getRequest())) {
+        if (!update.getMessage().getText().startsWith(commandProperties.getTranslateAndSynthesizeText().getRequest())) {
             return;
         }
 
