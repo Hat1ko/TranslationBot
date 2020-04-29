@@ -35,9 +35,9 @@ public class TranslateWordsHandler implements TelegramUpdateHandler {
 
         Long chatId = update.getMessage().getChatId();
 
-//      TODO: to be processed soon
         String receivedText = update.getMessage().getText();
-        FromToTextDto codes = fieldPreparator.getFromToTextDto(receivedText);
+        String args = ArgsExtractor.removeFirstWord(receivedText);
+        FromToTextDto codes = fieldPreparator.getFromToTextDto(args);
         List<String> wordsToTranslate = ArgsExtractor.extractWords(codes.getModifiedText());
         List<String> translatedWords = translationService.translateText(
                 wordsToTranslate, codes.getFromCode(), codes.getToCode());
