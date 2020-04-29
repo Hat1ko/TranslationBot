@@ -18,7 +18,6 @@ public class AutoReplyHandler implements TelegramUpdateHandler {
 
     private final TranslationBot translationBot;
     private final CommandProperties commandProperties;
-    private final ArgsExtractor argsExtractor;
 
     @Override
     public void handle(Update update) {

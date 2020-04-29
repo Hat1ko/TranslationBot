@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Data
-@Builder
 @ConfigurationProperties("telegram.bot.command")
 @Component
 public class CommandProperties {
@@ -37,7 +36,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class Start {
         private String request;
         private String response;
@@ -46,7 +44,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class Help {
         private String request;
         private String response;
@@ -55,7 +52,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class TranslateText {
         private String request;
         private String response;
@@ -64,7 +60,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class TranslateWords {
         private String request;
         private String response;
@@ -73,7 +68,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class SynthesizeText {
         private String request;
         private String response;
@@ -82,7 +76,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class SynthesizeWords {
         private String request;
         private String response;
@@ -100,7 +93,6 @@ public class CommandProperties {
     }
 
     @Data
-    @Builder
     public static class TranslateAndSynthesizeText {
         private String request;
         private String response;

@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Data
-@Builder
 @ConfigurationProperties("telegram.bot")
 @Component
 public class TranslationBotProperties {

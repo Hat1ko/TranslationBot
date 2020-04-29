@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class SynthesizerCommunicationServiceImpl implements SynthesizerCommunicationService {
 
-	private final RestTemplate syntesizerRest;
+	private final RestTemplate synthesizerRest;
 	private final HttpHeadersBuilder httpHeadersBuilder;
 	private final TextToSpeechProperties textToSpeechProperties;
 
@@ -30,7 +30,7 @@ public class SynthesizerCommunicationServiceImpl implements SynthesizerCommunica
 
 		HttpEntity<SynthesizeRequest> requestEntity = new HttpEntity<>(request, httpHeadersBuilder.getHttpHeaders());
 
-		SynthesizeResponse response = syntesizerRest
+		SynthesizeResponse response = synthesizerRest
 				.exchange(textToSpeechProperties.getUri(), HttpMethod.POST, requestEntity, SynthesizeResponse.class)
 				.getBody();
 
