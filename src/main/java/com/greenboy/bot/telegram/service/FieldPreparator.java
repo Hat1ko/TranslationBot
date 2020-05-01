@@ -77,7 +77,7 @@ public class FieldPreparator {
             fromCode = translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0);
             toCode = ofToTranslation(fromCode);
         }
-        if(toCode.equals(fromCode)) {
+        if (toCode.equals(fromCode)) {
             fromCode = translationService.recognizeLanguage(Arrays.asList(textToTranslate)).get(0);
         }
 
@@ -138,5 +138,25 @@ public class FieldPreparator {
         }
 
         return LanguageAndGenderDto.builder().languageCode(languageCode).gender(gender).synthesizeText(receivedText).build();
+    }
+
+    public String getLanguageName(String code) {
+
+        if (translationLanguages.getEnglish().getLanguageShort().equals(code)
+                || translationLanguages.getEnglish().getLanguageCode().equals(code)
+                || "en".equals(code)) {
+            return translationLanguages.getEnglish().getLanguageName();
+        }
+        if (translationLanguages.getRussian().getLanguageShort().equals(code)
+                || translationLanguages.getRussian().getLanguageCode().equals(code)
+                || "ru".equals(code)) {
+            return translationLanguages.getRussian().getLanguageName();
+        }
+        if (translationLanguages.getUkrainian().getLanguageShort().equals(code)
+                || translationLanguages.getUkrainian().getLanguageCode().equals(code)
+                || "uk".equals(code)) {
+            return translationLanguages.getUkrainian().getLanguageName();
+        }
+        return null;
     }
 }
