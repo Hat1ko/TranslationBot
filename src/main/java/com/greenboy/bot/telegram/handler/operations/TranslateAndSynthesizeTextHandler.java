@@ -29,6 +29,7 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
     private final TranslationService translationService;
     private final SynthesizeService synthesizeService;
     private final CommandProperties commandProperties;
+    private final ActionResponse actionResponse;
 
     @Override
     public void handle(Update update) {
@@ -45,6 +46,7 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
         String translatedText = translationService.translateText(
                 Arrays.asList(codes.getModifiedText()), codes.getFromCode(), codes.getToCode()).get(0);
         Path pathToSynthesized = synthesizeService.synthesizeText(translatedText, codes.getToCode(), dto.getGender());
-        Optional<Integer> messageId = translationBot.sendAudio(chatId, translatedText, pathToSynthesized.toFile());
+        Optional<Integer> messageId = translationBot.sendMessage(chatId, actionResponse.translateText(translatedText));
+        messageId = translationBot.sendAudio(chatId, translatedText, pathToSynthesized.toFile());
     }
 }
