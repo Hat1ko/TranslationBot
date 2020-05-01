@@ -130,7 +130,7 @@ public class FieldPreparator {
 
         String finalReceivedText = receivedText;
         if (translationLanguages.getGenderList().stream()
-                .filter(g -> g.equals(ArgsExtractor.extractWords(finalReceivedText))).count() > 0) {
+                .filter(g -> g.equals(ArgsExtractor.extractWords(finalReceivedText).get(0))).count() > 0) {
             gender = ArgsExtractor.extractWords(receivedText).get(0).toUpperCase();
             receivedText = ArgsExtractor.removeFirstWord(receivedText);
         } else {
