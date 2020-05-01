@@ -5,6 +5,7 @@ import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
 import com.greenboy.bot.telegram.service.ActionResponse;
 import com.greenboy.bot.telegram.service.ArgsExtractor;
+import com.greenboy.bot.telegram.service.FieldPreparator;
 import com.greenboy.ms.translation.service.TranslationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class RecognizeLanguageHandler implements TelegramUpdateHandler {
     private final CommandProperties commandProperties;
     private final TranslationService translationService;
     private final ActionResponse actionResponse;
+    private final FieldPreparator fieldPreparator;
 
     @Override
     public void handle(Update update) {
@@ -34,7 +36,7 @@ public class RecognizeLanguageHandler implements TelegramUpdateHandler {
         String receivedText = update.getMessage().getText();
         String textToRecognize = ArgsExtractor.removeFirstWord(receivedText);
         String language = translationService.recognizeLanguage(Arrays.asList(textToRecognize)).get(0);
-        String responseMessage = actionResponse.recognizeLanguage(language);
+        String responseMessage = actionResponse.recognizeLanguage(fieldPreparator.getLanguageName(language));
         Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);
     }
 }
