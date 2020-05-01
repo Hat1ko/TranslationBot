@@ -1,2 +1,2 @@
-export GOOGLE_APPLICATION_CREDENTIALS=
-cmd  gcloud auth application-default print-access-token
+set GOOGLE_APPLICATION_CREDENTIALS=
+powershell gcloud auth application-default print-access-token

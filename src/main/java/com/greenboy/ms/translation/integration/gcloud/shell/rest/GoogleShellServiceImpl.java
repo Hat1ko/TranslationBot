@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,8 @@ public class GoogleShellServiceImpl implements GoogleShellService {
                  BufferedReader errorInput = new BufferedReader(new InputStreamReader(shell.getErrorStream()))) {
 
                 String error = errorInput.lines().collect(Collectors.joining());
-                String accessToken = input.lines().collect(Collectors.joining());
+                List<String> response = Arrays.asList(input.lines().collect(Collectors.joining()).split(" "));
+                String accessToken = response.get(response.size() - 1);
 
                 if (StringUtils.isNotBlank(error)) {
                     String errorInputMessage = String.format("Command %s throw Error: %s", Arrays.toString(args),
