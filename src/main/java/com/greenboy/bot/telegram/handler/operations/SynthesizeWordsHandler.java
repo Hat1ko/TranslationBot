@@ -40,7 +40,7 @@ public class SynthesizeWordsHandler implements TelegramUpdateHandler {
         Optional<Integer> messageId;
         for (String word : wordsToSynthesize) {
             messageId = translationBot.sendAudio(
-                    chatId, dto.getSynthesizeText(), synthesizeService.synthesizeText(word,
+                    chatId, word, synthesizeService.synthesizeText(word,
                             dto.getLanguageCode(), dto.getGender()).toFile());
         }
     }

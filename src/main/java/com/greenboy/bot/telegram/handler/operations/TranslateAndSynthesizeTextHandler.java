@@ -44,7 +44,7 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
         LanguageAndGenderDto dto = fieldPreparator.getLanguageAndGenderDto(text);
         String translatedText = translationService.translateText(
                 Arrays.asList(codes.getModifiedText()), codes.getFromCode(), codes.getToCode()).get(0);
-        Path pathToSynthesized = synthesizeService.synthesizeText(translatedText, dto.getLanguageCode(), dto.getGender());
+        Path pathToSynthesized = synthesizeService.synthesizeText(translatedText, codes.getToCode(), dto.getGender());
         Optional<Integer> messageId = translationBot.sendAudio(chatId, translatedText, pathToSynthesized.toFile());
     }
 }
