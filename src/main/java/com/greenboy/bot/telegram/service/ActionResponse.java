@@ -30,7 +30,7 @@ public class ActionResponse {
     }
 
     public String autoReply() {
-        return null;
+        return commandProperties.getAutoReply().getResponse();
     }
 
     public String recognizeLanguage(String language) {
