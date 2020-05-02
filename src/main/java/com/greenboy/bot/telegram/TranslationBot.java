@@ -2,6 +2,7 @@ package com.greenboy.bot.telegram;
 
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.TranslationBotProperties;
+import com.greenboy.bot.telegram.service.ActionResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -9,12 +10,10 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Audio;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,18 +23,25 @@ public class TranslationBot extends TelegramLongPollingBot {
 
     private final TranslationBotProperties botProperties;
     private final List<TelegramUpdateHandler> telegramUpdateHandlers;
+    private final ActionResponse actionResponse;
 
     @Autowired
     @Lazy
-    public TranslationBot(TranslationBotProperties botProperties, List<TelegramUpdateHandler> telegramUpdateHandlers) {
+    public TranslationBot(TranslationBotProperties botProperties, List<TelegramUpdateHandler> telegramUpdateHandlers, ActionResponse actionResponse) {
         this.botProperties = botProperties;
         this.telegramUpdateHandlers = telegramUpdateHandlers;
+        this.actionResponse = actionResponse;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
-        for (TelegramUpdateHandler handler : telegramUpdateHandlers) {
-            handler.handle(update);
+        try {
+            for (TelegramUpdateHandler handler : telegramUpdateHandlers) {
+                handler.handle(update);
+            }
+        } catch (Exception e) {
+            log.error("Error while handling updates : %s", e.getMessage());
+            sendMessage(update.getMessage().getChatId(), actionResponse.autoReply());
         }
     }
 
