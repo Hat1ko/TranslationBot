@@ -30,7 +30,7 @@ public class GoogleShellServiceImpl implements GoogleShellService {
 
             String[] args = !System.getProperty("os.name").toLowerCase().startsWith("windows") ?
                     new String[]{"bash", pathToAccessTokenScript + ".sh"} :
-                    new String[]{"cmd", pathToAccessTokenScript + ".bat"};
+                    new String[]{"powershell", pathToAccessTokenScript + ".bat"};
 
             Process shell = Runtime.getRuntime().exec(args);
             try (BufferedReader input = new BufferedReader(new InputStreamReader(shell.getInputStream()));

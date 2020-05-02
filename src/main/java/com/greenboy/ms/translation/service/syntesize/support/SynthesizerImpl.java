@@ -3,6 +3,7 @@ package com.greenboy.ms.translation.service.syntesize.support;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Base64;
 
@@ -19,7 +20,14 @@ public class SynthesizerImpl implements Synthesizer {
 
 		byte[] decodedAudioContent = Base64.getDecoder().decode(audioContent);
 
-		Path pathToSound = Path.of(String.format("audio"))
+		if (!Files.exists(Path.of("audio"))){
+			try {
+				Files.createDirectory(Paths.get("audio"));
+			} catch (IOException e) {
+				log.error("Error : {}", e.getMessage());
+			}
+		}
+		Path pathToSound = Path.of("audio")
 				.resolve(String.format("%s.mp3", text.substring(0, Math.min(text.length(), 10))));
 
 		if (Files.exists(pathToSound)) {
