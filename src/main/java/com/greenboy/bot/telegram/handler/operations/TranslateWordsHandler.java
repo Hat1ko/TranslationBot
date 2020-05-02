@@ -44,13 +44,13 @@ public class TranslateWordsHandler implements TelegramUpdateHandler {
 
         Optional<Integer> messageId;
         if (translatedWords.size() > 0) {
-            messageId = translationBot.sendMessage(chatId, "Next are requested to translate words");
+            messageId = translationBot.sendMessage(chatId, actionResponse.translateWords(0));
             for (int i = 0; i < translatedWords.size(); i++) {
                 messageId = translationBot.sendMessage(
-                        chatId, String.format("%s : %s", wordsToTranslate.get(i), translatedWords.get(i)));
+                        chatId, actionResponse.translateWords(1, wordsToTranslate.get(i), translatedWords.get(i)));
             }
         } else {
-            messageId = translationBot.sendMessage(chatId, actionResponse.error());
+            messageId = translationBot.sendMessage(chatId, actionResponse.translateWords(2));
         }
     }
 }

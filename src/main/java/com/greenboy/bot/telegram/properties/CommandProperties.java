@@ -15,6 +15,8 @@ import java.util.List;
 @Component
 public class CommandProperties {
 
+    private AutoReply autoReply;
+
     private Start start;
     private Help help;
 
@@ -39,6 +41,14 @@ public class CommandProperties {
         requestList.add(synthesizeWords.getRequest());
         requestList.add(recognizeLanguage.getRequest());
         requestList.add(translateAndSynthesizeText.getRequest());
+    }
+
+    @Data
+    public static class AutoReply {
+        private String request;
+        private String response;
+        private String method;
+        private Integer argc;
     }
 
     @Data
