@@ -57,6 +57,8 @@ public class TranslationBot extends TelegramLongPollingBot {
 
     public Optional<Integer> sendMessage(Long chatId, String text) {
 
+        log.info("Sending message to chatId = {} with text = {}", chatId, text);
+
         SendMessage sendMessage = new SendMessage();
 
         sendMessage.setChatId(chatId);
@@ -72,6 +74,9 @@ public class TranslationBot extends TelegramLongPollingBot {
     }
 
     public Optional<Integer> sendAudio(Long chatId, String title, File wayToAudioFile) {
+
+        log.info("Sending audio to chatId = {} with title = {} and pathToFile = {}",
+                chatId, title, wayToAudioFile.toString());
 
         SendAudio sendAudio = new SendAudio();
 

@@ -37,6 +37,8 @@ public class TranslateWordsHandler implements TelegramUpdateHandler {
         String receivedText = update.getMessage().getText();
         String args = ArgsExtractor.removeFirstWord(receivedText);
 
+        log.info("Handling {} in chat = {}", commandProperties.getTranslateWords().getRequest(), chatId);
+
         if (args.equals(receivedText)) {
             Optional<Integer> messageId = translationBot.sendMessage(chatId, actionResponse.autoReply());
             return;

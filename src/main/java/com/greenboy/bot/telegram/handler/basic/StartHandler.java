@@ -27,6 +27,9 @@ public class StartHandler implements TelegramUpdateHandler {
         }
 
         Long chatId = update.getMessage().getChatId();
+
+        log.info("Handling {} in chat = {}", commandProperties.getStart().getRequest(), chatId);
+
         String responseMessage = actionResponse.start(update.getMessage().getFrom().getFirstName());
         Optional<Integer> messageId = translationBot.sendMessage(chatId, responseMessage);
     }
