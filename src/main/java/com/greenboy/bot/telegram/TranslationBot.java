@@ -40,7 +40,7 @@ public class TranslationBot extends TelegramLongPollingBot {
                 handler.handle(update);
             }
         } catch (Exception e) {
-            log.error("Error while handling updates : %s", e.getMessage());
+            log.error("Error while handling updates : {}", e.getMessage());
             sendMessage(update.getMessage().getChatId(), actionResponse.autoReply());
         }
     }

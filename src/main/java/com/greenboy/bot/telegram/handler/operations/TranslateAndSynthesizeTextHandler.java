@@ -41,6 +41,11 @@ public class TranslateAndSynthesizeTextHandler implements TelegramUpdateHandler 
         String receivedText = update.getMessage().getText();
         String text = ArgsExtractor.removeFirstWord(receivedText);
 
+        if (text.equals(receivedText)) {
+            Optional<Integer> messageId = translationBot.sendMessage(chatId, actionResponse.autoReply());
+            return;
+        }
+
         FromToTextDto codes = fieldPreparator.getFromToTextDto(text);
         LanguageAndGenderDto dto = fieldPreparator.getLanguageAndGenderDto(text);
         String translatedText = translationService.translateText(

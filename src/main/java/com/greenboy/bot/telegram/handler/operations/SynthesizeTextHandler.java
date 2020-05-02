@@ -4,6 +4,7 @@ import com.greenboy.bot.telegram.TranslationBot;
 import com.greenboy.bot.telegram.dto.LanguageAndGenderDto;
 import com.greenboy.bot.telegram.handler.TelegramUpdateHandler;
 import com.greenboy.bot.telegram.properties.CommandProperties;
+import com.greenboy.bot.telegram.service.ActionResponse;
 import com.greenboy.bot.telegram.service.ArgsExtractor;
 import com.greenboy.bot.telegram.service.FieldPreparator;
 import com.greenboy.ms.translation.service.SynthesizeService;
@@ -24,6 +25,7 @@ public class SynthesizeTextHandler implements TelegramUpdateHandler {
     private final CommandProperties commandProperties;
     private final SynthesizeService synthesizeService;
     private final FieldPreparator fieldPreparator;
+    private final ActionResponse actionResponse;
 
     @Override
     public void handle(Update update) {
@@ -34,6 +36,12 @@ public class SynthesizeTextHandler implements TelegramUpdateHandler {
         Long chatId = update.getMessage().getChatId();
         String receivedText = update.getMessage().getText();
         String textToSynthesize = ArgsExtractor.removeFirstWord(receivedText);
+
+        if (textToSynthesize.equals(receivedText)) {
+            Optional<Integer> messageId = translationBot.sendMessage(chatId, actionResponse.autoReply());
+            return;
+        }
+
         LanguageAndGenderDto dto = fieldPreparator.getLanguageAndGenderDto(textToSynthesize);
         Path pathToSynthesizedFile = synthesizeService.synthesizeText(dto.getSynthesizeText(),
                 dto.getLanguageCode(), dto.getGender());
